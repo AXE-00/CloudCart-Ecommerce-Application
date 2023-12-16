@@ -14,7 +14,14 @@
     <artifactId>CloudCart-Application</artifactId>
     <version>1.0.0</version>
     <name>CloudCart-Application</name>
-    <description>CloudCart is a ecommerce application</description>
+    <description>CloudCart is an ecommerce application</description>
+
+    <modules>
+        <module>UserAuth</module>
+        <module>UserService</module>
+        <module>APIGateway</module>
+        <module>EurekaServer</module>
+    </modules>
 
     <properties>
         <java.version>17</java.version>
