@@ -2,8 +2,10 @@ package com_selfProject_UserService.service;
 
 import com_selfProject_UserService.domain.FavItems;
 import com_selfProject_UserService.domain.User;
+import com_selfProject_UserService.domain.UserDto;
 import com_selfProject_UserService.exception.UserAlreadyExist;
 import com_selfProject_UserService.exception.UserNotFoundException;
+import com_selfProject_UserService.proxy.UserProxy;
 import com_selfProject_UserService.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,14 +16,30 @@ import java.util.List;
 @Service
 public class UserService implements IUserService{
 
-    @Autowired
     UserRepo userRepo;
+    UserProxy userProxy;
+
+    @Autowired
+    public UserService(UserRepo userRepo, UserProxy userProxy) {
+        this.userRepo = userRepo;
+        this.userProxy = userProxy;
+    }
+
     @Override
     public User addUser(User user) throws UserAlreadyExist {
         if(userRepo.existsById(user.getUserEmail())){
             System.out.println("User already exist!!"); // replaced by exception
             throw new UserAlreadyExist();
         }
+        UserDto userDto = new UserDto();
+        userDto.setUserEmail(user.getUserEmail());
+        userDto.setPassword(user.getPassword());
+        userDto.setUserName(user.getUserName());
+        userDto.setPhoneNo(user.getPhoneNo());
+        userDto.setImageName(user.getImageName());
+        userDto.setRole(user.getRole());
+
+        userProxy.registerUser(userDto);
         return userRepo.save(user);
     }
 
@@ -32,17 +50,22 @@ public class UserService implements IUserService{
             throw new UserNotFoundException();
         }
         User existingUser = userRepo.findById(email).get();
+        UserDto userDto = new UserDto();
 
         if(user.getUserImage() != null){
             existingUser.setUserImage(user.getUserImage());
             existingUser.setImageName(user.getImageName());
+            userDto.setImageName(user.getImageName());
         }
         if(user.getUserName() != null){
             existingUser.setUserName(user.getUserName());
+            userDto.setUserName(user.getUserName());
         }
         if(user.getPhoneNo() != 0){
             existingUser.setPhoneNo(user.getPhoneNo());
+            userDto.setPhoneNo(user.getPhoneNo());
         }
+        userProxy.updateUser(userDto,email);
         return userRepo.save(existingUser);
     }
 
@@ -70,10 +93,12 @@ public class UserService implements IUserService{
 
     @Override
     public boolean itemExist(String email, int itemId) {
-        List<FavItems> favList = userRepo.findById(email).get().getFavItems();
-        for(FavItems items : favList){
-            if(items.getItemId()==itemId){
-                return true;
+        if(userRepo.findById(email).isPresent()){
+            List<FavItems> favList = userRepo.findById(email).get().getFavItems();
+            for(FavItems items : favList){
+                if(items.getItemId()==itemId){
+                    return true;
+                }
             }
         }
         return false;
@@ -81,7 +106,7 @@ public class UserService implements IUserService{
 
     @Override
     public void removeItemFromFav(String email, int itemId) {
-        User user = userRepo.findById(email).get();
+      User user = userRepo.findById(email).get();
       List<FavItems> itemList = userRepo.findById(email).get().getFavItems();
       for(FavItems favItems : itemList){
           if(favItems.getItemId()==itemId){
