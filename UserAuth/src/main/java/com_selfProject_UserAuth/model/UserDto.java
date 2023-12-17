@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
-public class User {
-     @Id
+public class UserDto {
     private String userEmail;
     private String userName;
     private String password;
