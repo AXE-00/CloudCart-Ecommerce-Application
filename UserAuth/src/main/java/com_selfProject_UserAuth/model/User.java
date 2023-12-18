@@ -1,5 +1,6 @@
 package com_selfProject_UserAuth.model;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 public class User {
-     @Id
+@Id
     private String userEmail;
     private String userName;
     private String password;

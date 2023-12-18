@@ -16,8 +16,8 @@ import java.util.List;
 @Service
 public class UserService implements IUserService{
 
-    UserRepo userRepo;
-    UserProxy userProxy;
+    private final UserRepo userRepo;
+    private UserProxy userProxy;
 
     @Autowired
     public UserService(UserRepo userRepo, UserProxy userProxy) {
@@ -129,11 +129,12 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public User getUserName(String email)throws UserNotFoundException {
+    public String getUserName(String email)throws UserNotFoundException {
         if(userRepo.findById(email).isEmpty()){
             System.out.println("User not exist"); // user defined exception
             throw new UserNotFoundException();
         }
-        return userRepo.findById(email).get();
+        User user = userRepo.findById(email).get();
+        return user.getUserName();
     }
 }

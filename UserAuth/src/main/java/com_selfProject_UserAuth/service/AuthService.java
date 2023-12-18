@@ -9,11 +9,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService implements IAuthService{
-    private AuthRepo authRepo;
     @Autowired
-    public AuthService(AuthRepo authRepo) {
-        this.authRepo = authRepo;
-    }
+    private AuthRepo authRepo;
 
     @Override
     public User addUser(User user) throws UserAlreadyPresentException {
@@ -30,13 +27,13 @@ public class AuthService implements IAuthService{
             System.out.println("User Not present");
             throw new UserNotFound();
         }
-        return authRepo.findByEmailAndPassword(user.getUserEmail(), user.getPassword());
+        return authRepo.findByUserEmailAndPassword(user.getUserEmail(), user.getPassword());
     }
 
     @Override
     public User updateUser(String email, User user) throws UserNotFound {
         if(authRepo.findById(email).isPresent()){
-            User existingUser = authRepo.findByEmailAndPassword(user.getUserEmail(), user.getPassword());
+            User existingUser = authRepo.findByUserEmailAndPassword(user.getUserEmail(), user.getPassword());
             if(user.getUserName()!=null){
                 existingUser.setUserName(user.getUserName());
             }

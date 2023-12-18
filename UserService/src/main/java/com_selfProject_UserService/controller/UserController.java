@@ -6,6 +6,7 @@ import com_selfProject_UserService.domain.User;
 import com_selfProject_UserService.exception.UserAlreadyExist;
 import com_selfProject_UserService.exception.UserNotFoundException;
 import com_selfProject_UserService.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,7 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import javax.servlet.http.HttpServletRequest;
+
 
 import java.io.IOException;
 
@@ -76,7 +77,7 @@ public class UserController {
     }
 
     @DeleteMapping("/remove/Item")
-    public ResponseEntity<?> removeItem(HttpServletRequest request,@RequestParam int itemId){
+    public ResponseEntity<?> removeItem(HttpServletRequest request, @RequestParam int itemId){
         String email = (String)request.getAttribute("attr1");
         if(email.isEmpty()){
             return new ResponseEntity<>("check your email again..!",HttpStatus.BAD_REQUEST);

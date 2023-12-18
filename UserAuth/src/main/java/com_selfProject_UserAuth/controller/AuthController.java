@@ -4,8 +4,8 @@ import com_selfProject_UserAuth.exception.UserAlreadyPresentException;
 import com_selfProject_UserAuth.exception.UserNotFound;
 import com_selfProject_UserAuth.model.User;
 import com_selfProject_UserAuth.model.UserDto;
-import com_selfProject_UserAuth.service.AuthService;
-import com_selfProject_UserAuth.service.TokenGenerator;
+import com_selfProject_UserAuth.service.IAuthService;
+import com_selfProject_UserAuth.service.ITokenGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/authService")
 public class AuthController {
 
-    private AuthService authService;
-    private TokenGenerator tokenGenerator;
+    private IAuthService authService;
+    private ITokenGenerator tokenGenerator;
 
     @Autowired
-    public AuthController(AuthService authService, TokenGenerator tokenGenerator) {
+    public AuthController(IAuthService authService, ITokenGenerator tokenGenerator) {
         this.authService = authService;
         this.tokenGenerator = tokenGenerator;
     }

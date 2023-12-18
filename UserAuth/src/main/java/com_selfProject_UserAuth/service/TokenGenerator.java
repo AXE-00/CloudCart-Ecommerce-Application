@@ -11,7 +11,6 @@ import java.util.Map;
 
 @Service
 public class TokenGenerator implements ITokenGenerator {
-
     @Override
     public Map<String, String> storeToken(User user) {
         Map<String,Object> userData = new HashMap<>();
@@ -19,8 +18,8 @@ public class TokenGenerator implements ITokenGenerator {
         userData.put("role", user.getRole());
 
         String token = Jwts.builder()
-                .setIssuedAt(new Date())
                 .setClaims(userData)
+                .setIssuedAt(new Date())
                 .signWith(SignatureAlgorithm.HS512,"secKey1945")
                 .compact();
         Map<String,String> genToken = new HashMap<>();
