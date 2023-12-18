@@ -29,12 +29,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProducts() throws ProductNotFoundException {
-        return null;
+        List<Product> productList = this.productRepository.findAll();
+        if (productList.isEmpty()) {
+            throw new ProductNotFoundException("No Product Found");
+        }
+        return productList;
     }
 
     @Override
-    public Product getByName(String productName) throws ProductNotFoundException {
-        return null;
+    public Product getByName(String productName){
+        return productRepository.findByProductName(productName);
     }
 
     @Override
