@@ -37,17 +37,42 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getByName(String productName){
+    public Product getByName(String productName) {
         return productRepository.findByProductName(productName);
     }
 
     @Override
-    public Product updateProduct(Product product, int productId) throws ProductNotFoundException {
-        return null;
+    public Product updateProduct(Product product, int productId) {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        if (optionalProduct.isEmpty()) {
+            return null;
+        }
+        Product existingProduct = optionalProduct.get();
+        if (product.getProductName() != null) {
+            existingProduct.setProductName(product.getProductName());
+        }
+        if (product.getImageUrl() != null) {
+            existingProduct.setImageUrl(product.getImageUrl());
+        }
+        if (product.getProductRating() != 0) {
+            existingProduct.setProductRating(product.getProductRating());
+        }
+        if (product.getProductPrice() != 0) {
+            existingProduct.setProductPrice(product.getProductPrice());
+        }
+        if (product.getDescription() != null) {
+            existingProduct.setDescription(product.getDescription());
+        }
+        return productRepository.save(existingProduct);
     }
 
     @Override
-    public boolean deleteById(int productId) throws ProductNotFoundException {
-        return false;
+    public boolean deleteById(int productId) {
+        if (productRepository.findById(productId).isEmpty()) {
+            return false;
+        } else {
+            productRepository.deleteById(productId);
+            return true;
+        }
     }
 }
