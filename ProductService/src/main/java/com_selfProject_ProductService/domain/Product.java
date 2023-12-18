@@ -3,7 +3,6 @@ package com_selfProject_ProductService.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @AllArgsConstructor
@@ -11,5 +10,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Document
 public class Product {
-
+    private int productId;
+    private String productName;
+    private double productPrice;
+    private String imageUrl;
+    private double productRating;
+    private String description;
 }
