@@ -18,4 +18,4 @@ spring:
   main:
     web-application-type: reactive
 server:
-  port: '7999'
+  port: '9000'
