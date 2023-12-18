@@ -12,4 +12,7 @@ public interface ProductService {
 
     Product getByName(String productName);
 
+    Product updateProduct(Product product, int productId);
+
+    boolean deleteById(int productId);
 }
