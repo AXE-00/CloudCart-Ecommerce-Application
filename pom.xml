@@ -22,6 +22,7 @@
         <module>UserService</module>
         <module>APIGateway</module>
         <module>EurekaServer</module>
+        <module>ProductService</module>
     </modules>
 
     <properties>
