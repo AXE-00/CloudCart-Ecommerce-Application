@@ -2,15 +2,14 @@ package com_selfProject_ProductService.controller;
 
 import com_selfProject_ProductService.domain.Product;
 import com_selfProject_ProductService.exception.ProductAlreadyExistsException;
+import com_selfProject_ProductService.exception.ProductNotFoundException;
 import com_selfProject_ProductService.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("api/v1/product")
@@ -26,5 +25,20 @@ public class ProductController {
         } else {
             return new ResponseEntity<>("You are not authorized to add new products", HttpStatus.UNAUTHORIZED);
         }
+    }
+
+    @GetMapping("/getAllItems")
+    public ResponseEntity<?> getAllItems() throws ProductNotFoundException {
+        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getByName/{productName}")
+    public ResponseEntity<?> getByName(@PathVariable String productName) {
+        return new ResponseEntity<>(productService.getByName(productName), HttpStatus.OK);
+    }
+
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<?> getById(@PathVariable int id) {
+        return new ResponseEntity<>(productService.getById(id), HttpStatus.OK);
     }
 }
