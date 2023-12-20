@@ -41,4 +41,13 @@ public class ProductController {
     public ResponseEntity<?> getById(@PathVariable int id) {
         return new ResponseEntity<>(productService.getById(id), HttpStatus.OK);
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateProduct(HttpServletRequest httpServletRequest, @RequestBody Product product, @PathVariable int id) {
+        if (httpServletRequest.getAttribute("attr2").equals("adminRole")) {
+            return new ResponseEntity<>(productService.updateProduct(product, id), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("You are not authorized to update", HttpStatus.OK);
+        }
+    }
 }
