@@ -50,4 +50,13 @@ public class ProductController {
             return new ResponseEntity<>("You are not authorized to update", HttpStatus.OK);
         }
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteById(HttpServletRequest httpServletRequest, @PathVariable int id) {
+        if (httpServletRequest.getAttribute("attr2").equals("adminRole")) {
+            return new ResponseEntity<>(productService.deleteById(id), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("You are not authorized to delete", HttpStatus.OK);
+        }
+    }
 }
