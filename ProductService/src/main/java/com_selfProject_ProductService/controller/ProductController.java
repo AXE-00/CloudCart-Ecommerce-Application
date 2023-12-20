@@ -27,8 +27,8 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/getAllItems")
-    public ResponseEntity<?> getAllItems() throws ProductNotFoundException {
+    @GetMapping("/getAllProducts")
+    public ResponseEntity<?> getAllProducts() throws ProductNotFoundException {
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
 
