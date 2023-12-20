@@ -42,6 +42,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Product getById(int productId) {
+        return productRepository.findById(productId).get();
+    }
+
+    @Override
     public Product updateProduct(Product product, int productId) {
         Optional<Product> optionalProduct = productRepository.findById(productId);
         if (optionalProduct.isEmpty()) {
