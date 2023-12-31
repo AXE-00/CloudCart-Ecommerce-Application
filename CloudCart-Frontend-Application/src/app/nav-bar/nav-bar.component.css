@@ -10,11 +10,21 @@
     font-size: 35px;
     text-align: center;
     font-weight: 500;
-    margin-left: 4%;
+    /* margin-left: 4%; */
     margin-top: 15px;
 }
 .logo a{
     color: rgb(64, 16, 98);
+    animation: 1s logoCol alternate infinite;
+}
+@keyframes logoCol {
+    100%{
+        color: #ff0051;
+    }
+}
+.logo a:hover{
+    color:#ff0051;
+    transition: 0.2s ease-in-out ;
 }
 a{
     text-decoration: none;
@@ -42,7 +52,7 @@ a{
     list-style: none;
     display: flex;
     margin: 20px;
-    
+    position: relative;
 }
 .list li{
     justify-content: center;
@@ -51,7 +61,7 @@ a{
 
 }
 .list li a{
-    color: rgb(127, 125, 125);
+    color: rgb(98, 95, 95);
     padding: 5px 30px;
     text-align: center;
     font-size: 15px;
@@ -64,6 +74,36 @@ a{
 .list li a:hover{
     color: rgb(242, 32, 95);
 }
+.proList{
+    position: absolute;
+    top: 45px;
+    border: 1px solid black;
+    padding: 20px;
+    background-color: white;
+    display: none;
+}
+
+.profile:hover .proList{
+    display: block;
+}
+
+.proList #log {
+    background-color: red;
+    margin-top: 30px;
+    border-radius: 4px;
+}
+
+.proList #log:hover{
+    background-color: rgb(174, 0, 255);
+    transition: 0.3s ease-in-out;
+}
+
+#log a{
+    color: white;
+    border: none;
+    font-weight: 500;
+}
+
 
 .listLink{
     width: 100%;
@@ -83,4 +123,6 @@ a{
 }
 .typeList li a:hover{
     color: rgb(242, 32, 95);
+    border-bottom: 3px solid rgb(242, 32, 95);
+    padding-bottom: 21px;
 }
