@@ -1,0 +1,57 @@
+.newsFront{
+    margin-top: 250px;
+}
+
+.secondCol .tag{
+    font-size: 40px;
+    color: rgb(61, 60, 60);
+    font-family:Verdana, Geneva, Tahoma, sans-serif;font-weight:600;
+}
+
+h4{
+    font-size: 35px;
+}
+
+button{
+    padding: 10px 30px;
+    width: 300px;
+    border: none;
+    outline: none;
+    background: rgb(247, 43, 114);
+    color: white;border-radius: 3px;
+}
+
+button:hover{
+    background: rgb(233, 51, 115);
+}
+
+img{
+    width:80%;
+}
+
+@media (max-width:1200px) {
+    img{
+         height: 250px;
+    }
+    .secondCol .tag{
+        font-size: 30px;
+    }
+    h4{
+        font-size: 30px;
+    }
+}
+
+@media (max-width:992px) {
+    img{
+         width:100%;
+    }
+}
+
+@media (max-width:767px) {
+    .secondCol .tag{
+        font-size: 35px;
+    }
+    h4{
+        font-size: 35px;
+    }
+}
