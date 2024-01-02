@@ -4,13 +4,14 @@ import { RouterOutlet } from '@angular/router';
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
 import { FooterComponent } from './footer/footer.component';
 import { MainFrontComponent } from "./main-front/main-front.component";
+import { LoginComponent } from "./login/login.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [CommonModule, RouterOutlet, NavBarComponent, FooterComponent, MainFrontComponent]
+    imports: [CommonModule, RouterOutlet, NavBarComponent, FooterComponent, MainFrontComponent, LoginComponent]
 })
 export class AppComponent {
   title = 'CloudCart';
