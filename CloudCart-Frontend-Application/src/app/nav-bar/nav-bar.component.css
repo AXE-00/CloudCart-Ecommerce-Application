@@ -4,6 +4,7 @@
     background-color: rgb(248, 250, 251);
     border-bottom: rgb(196, 194, 194) 1px solid;
     position: fixed;
+    top:0;
     justify-content: space-around;
 }
 .logo{
@@ -52,6 +53,7 @@ a{
     list-style: none;
     display: flex;
     margin: 20px;
+    background: white;
     position: relative;
 }
 .list li{
@@ -114,8 +116,9 @@ a{
     display: flex;
     gap: 40px;
     justify-content: center;
-    padding: 20px;
+    padding: 20px;margin-top: 1px;
     border-bottom:rgb(198, 197, 197) 1px solid;
+    background-color: white;
 }
 
 .typeList li a{
