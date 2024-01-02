@@ -1,10 +1,18 @@
 .newsFront{
+    
+    background: linear-gradient(rgb(249, 255, 70),white);
+    width: 90%;
+    margin: auto;
     margin-top: 250px;
+}
+
+.secondCol{
+    margin-top: 7%;
 }
 
 .secondCol .tag{
     font-size: 40px;
-    color: rgb(61, 60, 60);
+    color: rgb(73, 71, 71);
     font-family:Verdana, Geneva, Tahoma, sans-serif;font-weight:600;
 }
 
@@ -26,13 +34,10 @@ button:hover{
 }
 
 img{
-    width:80%;
+    width:70%;
 }
 
 @media (max-width:1200px) {
-    img{
-         height: 250px;
-    }
     .secondCol .tag{
         font-size: 30px;
     }
@@ -42,9 +47,7 @@ img{
 }
 
 @media (max-width:992px) {
-    img{
-         width:100%;
-    }
+    
 }
 
 @media (max-width:767px) {
