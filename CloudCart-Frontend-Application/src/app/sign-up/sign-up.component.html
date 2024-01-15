@@ -1,1 +1,65 @@
-<p>sign-up works!</p>
+
+<form [formGroup]="formData">
+    <h2>Registration Form</h2>
+    
+    <div id="inputData" class="row">
+        <div class="inputContainer">
+            <input type="text" formControlName="uName" id="uName" required autocomplete="off">
+            <label for="uName">First name</label>
+            <div id="err" *ngIf="formData.get('uName')?.errors?.['required'] && formData.get('uName')?.dirty">
+                Name is required
+            </div>
+        </div>
+
+        <div class="inputContainer">
+            <input type="text" formControlName="email" id="email" required autocomplete="off">
+            <label for="email">Email</label>
+            <div id="err" *ngIf="formData.get('email')?.errors?.['required'] && formData.get('email')?.dirty">
+                Email is required
+            </div>
+            <div id="err" *ngIf="formData.get('email')?.errors?.['checkEmail']===false && formData.get('email')?.dirty">
+                Email is not Valid
+            </div>
+        </div>
+    </div>
+
+    <div id="inputData" class="row">
+        <div class="inputContainer">
+            <input type="text" formControlName="password" id="pass" required autocomplete="off">
+            <label for="pass">Password</label>
+            <div id="err" *ngIf="formData.get('password')?.errors?.['required'] && formData.get('password')?.dirty">
+                Password is required
+            </div>
+        </div>
+        <div class="inputContainer">
+            <input type="text" formControlName="cPassword" id="cPass" required autocomplete="off">
+            <label for="cPass">Confirm Password</label>
+            <div id="err" *ngIf="formData.get('cPassword')?.errors?.['passwordMatch']===false">
+                Password is not matched
+            </div>
+        </div>
+
+    </div>
+
+    <div id="inputData">
+        <input type="text" formControlName="phoneNum" id="mobile" required autocomplete="off" >
+        <label for="mobile">Mobile Number</label>
+        <div id="err" *ngIf="formData.get('phoneNum')?.errors?.['pattern']">
+            Must be start with 7,8 or 9
+        </div>
+    </div>
+    
+    <div id="uploadImg">
+        <label for="fileInput" class="uploadBtn">
+            Upload Image
+        </label>
+        <input type="file" accept="image/*" id="fileInput" (change)="onImageUpload($event)">
+    </div>
+    <p>{{fileName}}</p>
+    
+    <div id="container">
+        <button type="submit">Submit</button>
+    </div>
+    
+    <p>Have an account already?<a routerLink="/login"> login</a></p>
+</form>

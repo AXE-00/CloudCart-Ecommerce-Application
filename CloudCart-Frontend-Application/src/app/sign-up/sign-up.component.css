@@ -1,0 +1,149 @@
+h2{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,rgb(246, 238, 4),rgb(189, 19, 212));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+form{
+    margin: auto;
+    margin-top: 140px;
+    width:80%;
+    /* border: 1px solid black; */
+    padding: 20px;
+    background-color:white;
+    border-radius: 10px;
+    box-shadow: 7px 12px 33px -9px rgba(0,0,0,0.75);    
+}
+
+input:focus ~ label,
+input:valid ~ label{
+    transform: translateY(-15px);
+    font-size:13px;
+    color: rgb(19, 79, 144);
+}
+
+#inputData{
+    position: relative;
+}
+
+.row {
+    display: flex;justify-content: space-evenly;
+}
+
+.inputContainer {
+    width: 50%; /* Adjust the width as needed */
+    position: relative;
+}
+.inputContainer label{
+    left: 25px;
+}
+ label{
+    position: absolute;
+    bottom: 10px;
+    left: 13px;
+    color: grey;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: 0.4s ease-out;
+    font-size: 15px;
+}
+
+input{
+    width: 90%;
+    height: 32px;
+    /* border-radius: 10px; */
+    margin-left: 15px;
+    margin-top: 10px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid silver;
+}
+input[type=text]{
+ font-family: cursive;
+}
+input:focus{
+    outline: none;
+}
+
+button{
+    width:160px;
+    height:35px;
+    background-color: cornflowerblue;
+    color: white;
+    font-size:15px;
+    cursor: pointer;
+    border: none;
+}
+
+#uploadImg {
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+    width: 300px;
+    top: 40px;
+}
+
+.uploadBtn{
+    background-color: rgb(255, 0, 89);
+    color: white;
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+
+p{
+    color: black;
+    margin-top: 40px;font-size: 30px;
+}
+
+#fileInput{
+    opacity: 0;
+}
+
+
+div{
+    margin-top: 15px;
+}
+#err{
+    position: absolute;
+    color: red;
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    left: 50%; /* Set left to 50% */
+    transform: translateX(-50%);
+}
+
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p{
+    font-family: cursive;
+    text-align: center;
+    font-size: 14px;
+}
+
+@media (min-width:390px) {
+    form{
+        transform: translateY(8%);
+    }
+}
+@media (max-width:490px) {
+    .row{
+        flex-direction: column;
+    }
+    form{
+        width: 250px;
+        transform: translateY(8%);
+    }
+    #err{
+        left: 20%;
+        transform: translateX(-10%);
+    }
+}
