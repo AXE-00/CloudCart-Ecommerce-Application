@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MainFrontComponent } from "./main-front/main-front.component";
 import { LoginComponent } from "./login/login.component";
 import {HttpClientModule} from "@angular/common/http";
+import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 
@@ -19,6 +20,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
                CommonModule,
                RouterOutlet,
                NavBarComponent, 
+               SignUpComponent,
                FooterComponent, 
                MainFrontComponent,
                LoginComponent,
