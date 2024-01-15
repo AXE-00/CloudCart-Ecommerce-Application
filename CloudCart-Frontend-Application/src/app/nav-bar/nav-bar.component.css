@@ -4,6 +4,7 @@
     /* border-bottom: rgb(196, 194, 194) 1px solid; */
     position: fixed;
     top:0;
+    z-index: 999;
     justify-content: space-around;
 }
 .logo{
