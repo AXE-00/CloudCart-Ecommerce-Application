@@ -1,5 +1,6 @@
 <div class="nav">
-    <p class="logo"><img src="assets/images/logo/favicon-32x32.png" style="margin-bottom: 10px" alt="logo-image"> <a href="#">CloudCart</a>  </p>
+    <p class="logo"><img src="assets/images/logo/favicon-32x32.png" style="margin-bottom: 10px" alt="logo-image">
+         <a routerLink="">CloudCart</a>  </p>
     <div class="searchBox">
         <input type="text" class="search" placeholder="Search Product">
         <img src="../../assets/images/search.png" alt="">
@@ -13,7 +14,7 @@
                 <i class="fa fa-user" style="margin-right: 5px;"></i>Profile</a>
            <ul class="proList">
                <li>Hello User</li>
-               <li id="log"><a href="">Login</a></li>
+               <li id="log"><a [routerLink]="'/login'">Login</a></li>
            </ul>
         </li>
         <li><a href="#">Cart</a></li>
