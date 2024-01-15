@@ -1,15 +1,26 @@
-<form action="">
+
+<form [formGroup]="formData" (ngSubmit)="getData()">
+    <h2>Login</h2>
     <div class="inputData">
-       <input type="text" id="email">
+       <input type="text" id="email" formControlName="email" autocomplete="off">
        <label for="email">Email</label>
+
+       <div id="err" *ngIf="formData.get('email')?.errors?.['required'] && formData.get('email')?.dirty">
+        Email is required
+      </div>
+
+      <div id="err" *ngIf="formData.get('email')?.errors?.['checkEmail']===false && formData.get('email')?.dirty">
+        Email is not valid
+      </div>
+      
     </div>
     <div class="inputData">
-        <input type="text" id="password">
+        <input type="text" id="password" formControlName="password" autocomplete="off">
         <label for="password">Password</label>
     </div>
     <div class="container">
-        <div class="row text-center">
+        
            <button type="submit">Login</button>
-        </div>
+        
     </div>
 </form>

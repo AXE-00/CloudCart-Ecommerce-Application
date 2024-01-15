@@ -1,6 +1,86 @@
+h2{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,rgb(246, 238, 4),rgb(189, 19, 212));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 form{
-    margin: 2% auto;padding: 20px;
+    margin: 20% auto;
+    padding: 20px;
     width: 400px;
     border-radius: 10px;
     box-shadow: 7px 12px 33px -9px rgba(0,0,0,0.75);
+    background-color: white;
+}
+
+input:focus ~ label,
+input:valid ~ label{
+    transform: translateY(-15px);
+    font-size:13px;
+    color: rgb(19, 79, 144);
+}
+
+.inputData{
+    position: relative;
+}
+
+label{
+    position: absolute;
+    left: 13px;
+    bottom: 10px;
+    font-size: 15px;
+    color: grey;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input{
+    width: 90%;
+    height: 32px;
+    margin-left: 15px;
+    margin-top: 10px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid silver;
+}
+
+input:focus{
+    outline: none;
+}
+
+
+button{
+    width:160px;
+    height:35px;
+    background-color: cornflowerblue;
+    color: white;
+    font-size:15px;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover{
+    background-color: rgb(41, 111, 241);
+}
+
+.container{
+    margin-top:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div{
+    margin-top: 25px;
+}
+
+#err{
+    position: absolute;
+    color: red;
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    left: 50%; /* Set left to 50% */
+    transform: translateX(-50%);
 }
