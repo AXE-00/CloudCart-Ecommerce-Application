@@ -2,18 +2,17 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { LoginService } from '../service/login.service';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports:[FormsModule,ReactiveFormsModule,CommonModule],
+  imports:[FormsModule,ReactiveFormsModule,CommonModule,RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
-  email:string="";
 
 constructor(private fb:FormBuilder){}
 

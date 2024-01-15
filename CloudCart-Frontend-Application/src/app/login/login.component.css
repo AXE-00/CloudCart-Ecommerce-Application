@@ -7,7 +7,7 @@ h2{
 }
 
 form{
-    margin: 20% auto;
+    margin: 18% auto;
     padding: 20px;
     width: 400px;
     border-radius: 10px;
@@ -83,4 +83,16 @@ div{
     font-size: 13px;
     left: 50%; /* Set left to 50% */
     transform: translateX(-50%);
+}
+
+form #regi{
+    text-align: center;
+    font-size: 14px;
+    margin: 0;
+    margin-top: 15px;
+}
+
+#regi a{
+    color: rgb(255, 0, 85);
+    cursor: pointer;
 }
