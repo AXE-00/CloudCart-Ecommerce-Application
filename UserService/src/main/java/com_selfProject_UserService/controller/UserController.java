@@ -31,8 +31,10 @@ public class UserController {
 
     @PostMapping("/register/user")
     public ResponseEntity<?> addUser(@RequestParam("file") MultipartFile file,@RequestParam("userData")String user) throws IOException, UserAlreadyExist {
+        System.out.println("request reached to register");
         User user1 = new ObjectMapper().readValue(user, User.class);
         user1.setUserImage(file.getBytes());
+        System.out.println(user);
         String fileName = file.getOriginalFilename();
         String newFileName = FilenameUtils.getBaseName(fileName)+"_"+System.currentTimeMillis()+"."+FilenameUtils.getExtension(fileName);
         user1.setImageName(newFileName);
