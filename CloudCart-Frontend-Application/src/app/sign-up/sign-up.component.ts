@@ -3,34 +3,36 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule,ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AbstractControl } from '@angular/forms';
+import { RegiService } from '../service/regi.service';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
   imports: [ReactiveFormsModule,CommonModule,FormsModule,RouterModule],
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent {
 
   fileName="No file choosen";
+  uploadedImg:any = File;
   
-  constructor(private fb:FormBuilder){}
+  constructor(private fb:FormBuilder,private regiService:RegiService){}
 
   formData=this.fb.group({
-    uName:["",Validators.required],
-    email:["",[Validators.required,this.checkEmail]],
+    userName:["",Validators.required],
+    userEmail:["",[Validators.required,this.checkEmail]],
     password:["",Validators.required],
     cPassword:["",[Validators.required,this.passwordMatch]],
-    phoneNum:["",[Validators.required,Validators.pattern(/^[789]\d{9,9}$/)]]
+    phoneNo:["",[Validators.required,Validators.pattern(/^[789]\d{9,9}$/)]]
   })
 
   getUName(){
-    return this.formData.get('uName');
+    return this.formData.get('userName');
   }
 
   getEmail(){
-    return this.formData.get('email');
+    return this.formData.get('userEmail');
   }
 
   getPassword(){
@@ -42,7 +44,10 @@ export class SignUpComponent {
   }
 
   onImageUpload(event:any){
-      this.fileName=event.target.files[0].name;
+      const imgData = event.target.files[0];
+      this.fileName= imgData.name;
+      this.uploadedImg=imgData;
+
       console.log(this.fileName);
   }
 
@@ -70,4 +75,20 @@ export class SignUpComponent {
     }
     return null;
   }
+
+  addUser(){
+    const userData = this.formData.value;
+    const fd = new FormData();
+
+    fd.append('userData',JSON.stringify(userData))
+    fd.append('file',this.uploadedImg)
+
+    this.regiService.registerUser(fd).subscribe({
+      next:data=>{
+        console.log("Success",data);
+        
+      }
+    })
+  }
+
 }

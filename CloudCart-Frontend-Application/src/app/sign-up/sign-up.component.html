@@ -1,24 +1,25 @@
 
-<form [formGroup]="formData">
+<form [formGroup]="formData" (ngSubmit)="addUser()">
     <h2>Registration Form</h2>
     
     <div id="inputData" class="row">
+        
         <div class="inputContainer">
-            <input type="text" formControlName="uName" id="uName" required autocomplete="off">
-            <label for="uName">First name</label>
-            <div id="err" *ngIf="formData.get('uName')?.errors?.['required'] && formData.get('uName')?.dirty">
-                Name is required
+            <input type="text" formControlName="userEmail" id="email" required autocomplete="off">
+            <label for="email">Email</label>
+            <div id="err" *ngIf="formData.get('userEmail')?.errors?.['required'] && formData.get('userEmail')?.dirty">
+                Email is required
+            </div>
+            <div id="err" *ngIf="formData.get('userEmail')?.errors?.['checkEmail']===false && formData.get('userEmail')?.dirty">
+                Email is not Valid
             </div>
         </div>
 
         <div class="inputContainer">
-            <input type="text" formControlName="email" id="email" required autocomplete="off">
-            <label for="email">Email</label>
-            <div id="err" *ngIf="formData.get('email')?.errors?.['required'] && formData.get('email')?.dirty">
-                Email is required
-            </div>
-            <div id="err" *ngIf="formData.get('email')?.errors?.['checkEmail']===false && formData.get('email')?.dirty">
-                Email is not Valid
+            <input type="text" formControlName="userName" id="uName" required autocomplete="off">
+            <label for="uName">Name</label>
+            <div id="err" *ngIf="formData.get('userName')?.errors?.['required'] && formData.get('userName')?.dirty">
+                Name is required
             </div>
         </div>
     </div>
@@ -42,9 +43,9 @@
     </div>
 
     <div id="inputData">
-        <input type="text" formControlName="phoneNum" id="mobile" required autocomplete="off" >
+        <input type="text" formControlName="phoneNo" id="mobile" required autocomplete="off" >
         <label for="mobile">Mobile Number</label>
-        <div id="err" *ngIf="formData.get('phoneNum')?.errors?.['pattern']">
+        <div id="err" *ngIf="formData.get('phoneNo')?.errors?.['pattern']">
             Must be start with 7,8 or 9
         </div>
     </div>
@@ -60,6 +61,6 @@
     <div id="container">
         <button type="submit">Submit</button>
     </div>
-    
-    <p>Have an account already?<a routerLink="/login"> login</a></p>
+
+    <p id="log">Have an account already?<a routerLink="/login"> login</a></p>
 </form>

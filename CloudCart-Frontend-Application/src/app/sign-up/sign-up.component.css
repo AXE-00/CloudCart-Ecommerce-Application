@@ -10,7 +10,7 @@ form{
     margin-top: 140px;
     width:80%;
     /* border: 1px solid black; */
-    padding: 20px;
+    padding: 10px;
     background-color:white;
     border-radius: 10px;
     box-shadow: 7px 12px 33px -9px rgba(0,0,0,0.75);    
@@ -127,6 +127,10 @@ p{
     font-family: cursive;
     text-align: center;
     font-size: 14px;
+}
+
+#log{
+    margin-top:10px;
 }
 
 @media (min-width:390px) {
