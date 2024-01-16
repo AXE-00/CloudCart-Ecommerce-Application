@@ -17,7 +17,7 @@ public class APIGateWay {
                 .route(p->p.path("/api/v1/authService/**")
                         .uri("http://localhost:8900"))
                 .route(p->p.path("/api/v1/userService/**")
-                        .uri("http://localhost:8901"))
+                        .uri("http://localhost:8082"))
                 .build();
     }
 
