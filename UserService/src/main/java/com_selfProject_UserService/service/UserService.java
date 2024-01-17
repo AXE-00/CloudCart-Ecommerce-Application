@@ -27,6 +27,7 @@ public class UserService implements IUserService{
 
     @Override
     public User addUser(User user) throws UserAlreadyExist {
+        System.out.println("add user in service");
         if(userRepo.existsById(user.getUserEmail())){
             System.out.println("User already exist!!"); // replaced by exception
             throw new UserAlreadyExist();
@@ -38,6 +39,8 @@ public class UserService implements IUserService{
         userDto.setPhoneNo(user.getPhoneNo());
         userDto.setImageName(user.getImageName());
         userDto.setRole(user.getRole());
+
+        System.out.println(userDto);
 
         userProxy.registerUser(userDto);
         return userRepo.save(user);
