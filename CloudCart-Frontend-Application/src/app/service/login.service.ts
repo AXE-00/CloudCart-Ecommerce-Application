@@ -13,6 +13,6 @@ export class LoginService {
 
 	login(loginData: any) {
     console.log(loginData);
-		return this.httpClient.post(`${this.authUrl}/login`, loginData);
+		return this.httpClient.post(`${this.authUrl}/user/login`, loginData);
 	}
 }

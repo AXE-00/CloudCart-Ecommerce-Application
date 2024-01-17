@@ -2,16 +2,17 @@ h2{
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     background:linear-gradient(135deg,rgb(246, 238, 4),rgb(189, 19, 212));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 form{
-    margin: 18% auto;
+    margin:250px auto;
     padding: 20px;
     width: 400px;
     border-radius: 10px;
-    box-shadow: 7px 12px 33px -9px rgba(0,0,0,0.75);
+    box-shadow: 7px 12px 33px -9px rgba(48, 48, 48, 0.75);
     background-color: white;
 }
 
@@ -30,8 +31,9 @@ label{
     position: absolute;
     left: 13px;
     bottom: 10px;
-    font-size: 15px;
+    font-size: 20px;
     color: grey;
+    transition: 0.4s ease-out;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -48,7 +50,6 @@ input{
 input:focus{
     outline: none;
 }
-
 
 button{
     width:160px;
