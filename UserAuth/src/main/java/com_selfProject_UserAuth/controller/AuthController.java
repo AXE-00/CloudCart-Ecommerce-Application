@@ -40,7 +40,7 @@ public class AuthController {
         User retrievedUser = authService.login(user);
         System.out.println(retrievedUser);
         if(retrievedUser!=null){
-            return new ResponseEntity<>(tokenGenerator.storeToken(user),HttpStatus.OK);
+            return new ResponseEntity<>(tokenGenerator.storeToken(retrievedUser),HttpStatus.OK);
         }
         else {
             return new ResponseEntity<>("Authorization Failed",HttpStatus.NOT_FOUND);
