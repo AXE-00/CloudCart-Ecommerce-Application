@@ -36,7 +36,9 @@ public class AuthController {
     }
     @PostMapping("/user/login")
     public ResponseEntity<?> loginUser(@RequestBody User user) throws UserNotFound {
+        System.out.println(user);
         User retrievedUser = authService.login(user);
+        System.out.println(retrievedUser);
         if(retrievedUser!=null){
             return new ResponseEntity<>(tokenGenerator.storeToken(user),HttpStatus.OK);
         }

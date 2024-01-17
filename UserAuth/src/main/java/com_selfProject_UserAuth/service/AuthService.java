@@ -27,7 +27,8 @@ public class AuthService implements IAuthService{
             System.out.println("User Not present");
             throw new UserNotFound();
         }
-        return authRepo.findByUserEmailAndPassword(user.getUserEmail(), user.getPassword());
+        else
+           return authRepo.findByUserEmailAndPassword(user.getUserEmail(), user.getPassword());
     }
 
     @Override
