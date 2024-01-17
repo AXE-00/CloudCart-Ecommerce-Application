@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { LoginService } from '../service/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,15 +16,15 @@ import { RouterModule } from '@angular/router';
 })
 export class LoginComponent {
 
-constructor(private fb:FormBuilder){}
+constructor(private fb:FormBuilder,private _snackbar:MatSnackBar,private logSer:LoginService,private routerComp:Router){}
 
 formData=this.fb.group({
-  email : ["",[Validators.required,this.checkEmail]],
+  userEmail : ["",[Validators.required,this.checkEmail]],
   password : ["",[Validators.required,Validators.minLength(7)]]
 }) 
 
  getEmail(){
-  return this.formData.get('email');
+  return this.formData.get('userEmail');
  }
 
  getPassword(){
@@ -42,9 +44,19 @@ formData=this.fb.group({
   return null;
  }
 
- getData(){
+ loginCheck(){
   const formInfo = this.formData.value;
   console.log(formInfo);
+  this.logSer.login(formInfo).subscribe({
+    next:data=>{
+      console.log(data);
+      this._snackbar.open('Logged In successfully.....', 'success', {
+        duration: 2000,
+        panelClass: ['mat-toolbar', 'mat-primary']
+      });
+    }
+  })
+  
  }
  
 }
