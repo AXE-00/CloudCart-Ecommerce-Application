@@ -15,7 +15,7 @@ public class APIGateWay {
     public RouteLocator routeLocator(RouteLocatorBuilder rlb){
         return rlb.routes()
                 .route(p->p.path("/api/v1/authService/**")
-                        .uri("http://localhost:8900"))
+                        .uri("http://localhost:8081"))
                 .route(p->p.path("/api/v1/userService/**")
                         .uri("http://localhost:8082"))
                 .build();
