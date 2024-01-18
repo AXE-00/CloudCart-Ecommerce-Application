@@ -31,7 +31,7 @@ public class AuthFilter extends GenericFilterBean {
                 String token = authHeader.substring(7);
 
                 // this will provide us claims(Data) send through token by decoding it using parser()
-                Claims claims = Jwts.parser().setSigningKey("xyZUser").parseClaimsJws(token).getBody();
+                Claims claims = Jwts.parser().setSigningKey("secKey1945").parseClaimsJws(token).getBody();
 
                 System.out.println("Claims = "+claims);
 
