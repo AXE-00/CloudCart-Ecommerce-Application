@@ -1,6 +1,6 @@
 .nav{
     width: 100%;
-    background-color: rgb(248, 250, 251);
+    background-color:white;
     position: fixed;
     top:0;
     z-index: 999;
@@ -9,7 +9,7 @@
 
 @font-face {
     font-family: gear;
-    src: url("../../assets/font/GearsOfPeace.ttf");
+    src: url("../../assets/font/Game\ Of\ Squids.ttf");
 }
 
 /* logo */
@@ -18,7 +18,7 @@
     text-align: center;
     font-weight: 500;
     /* margin-left: 4%; */
-    margin-top: 15px;
+    margin-top: 20px;
 }
 .logo a{
     color: rgb(64, 16, 98);
@@ -98,7 +98,7 @@ a{
 }
 
 .proList #log {
-    background-color: red;
+    background-color: rgb(255, 0, 93);
     margin-top: 30px;
     border-radius: 4px;
 }
