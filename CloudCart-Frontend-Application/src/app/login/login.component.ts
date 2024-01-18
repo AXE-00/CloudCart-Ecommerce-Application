@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  responseData:any;
 
 constructor(private fb:FormBuilder,private _snackbar:MatSnackBar,private logSer:LoginService,private routerComp:Router){}
 
@@ -50,10 +51,19 @@ formData=this.fb.group({
   this.logSer.login(formInfo).subscribe({
     next:data=>{
       console.log(data);
+      this.responseData = data;
+
+      localStorage.setItem('Token',this.responseData.Token);
+      localStorage.setItem('role',this.responseData.role);
+      localStorage.setItem('name',this.responseData.name);
+
       this._snackbar.open('Logged In successfully.....', 'success', {
         duration: 2000,
         panelClass: ['mat-toolbar', 'mat-primary']
       });
+
+      this.logSer.loginSuccess();
+      this.routerComp.navigateByUrl("");
     }
   })
   
