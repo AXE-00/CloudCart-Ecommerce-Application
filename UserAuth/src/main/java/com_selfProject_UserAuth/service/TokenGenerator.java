@@ -22,10 +22,14 @@ public class TokenGenerator implements ITokenGenerator {
                 .setIssuedAt(new Date())
                 .signWith(SignatureAlgorithm.HS512,"secKey1945")
                 .compact();
+
         Map<String,String> genToken = new HashMap<>();
+
         genToken.put("Token",token);
         genToken.put("email",user.getUserEmail());
+        genToken.put("name",user.getUserName());
         genToken.put("role", user.getRole());
+
         return genToken;
     }
 }
