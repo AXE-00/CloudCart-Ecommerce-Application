@@ -3,6 +3,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoginComponent } from './login/login.component';
 import { MainFrontComponent } from './main-front/main-front.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 export const routes: Routes = [
@@ -19,5 +20,10 @@ export const routes: Routes = [
         path:"signUp",
         component:SignUpComponent,
         title:"Sign Up"
+    },
+    {
+        path:"profile",
+        component:ProfileComponent,
+        title:"User | Profile"
     }
 ];
