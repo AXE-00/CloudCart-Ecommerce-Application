@@ -40,4 +40,9 @@ constructor(private logService:LoginService,private userSer:UserService, private
       this.userName ="User" ;
     }
   }
+
+  toggleMenu() {
+    var menu = document.getElementById("expandableMenu");
+    menu?.classList.toggle("active");
+}
 }
