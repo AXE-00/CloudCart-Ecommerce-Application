@@ -3,7 +3,7 @@
     background: linear-gradient(rgb(253, 209, 240),white);
     width: 90%;
     margin: auto;
-    margin-top: 160px;
+    margin-top: 170px;
 }
 
 .secondCol{
@@ -47,8 +47,23 @@ img{
     }
 }
 
-@media (max-width:992px) {
-    
+@media (max-width:1099px) {
+    .newsFront{
+        margin-top:230px;
+    }
+}
+
+@media (max-width:900px) {
+    .secondCol .tag1{
+        font-size:30px;
+        line-height:40px;
+    }
+}
+
+@media (max-width:800px) {
+    .newsFront{
+        margin-top:180px;
+    }
 }
 
 @media (max-width:767px) {
@@ -57,5 +72,17 @@ img{
     }
     h4{
         font-size: 35px;
+    }
+}
+
+@media (max-width:603px) {
+    .newsFront{
+        margin-top:230px;
+    }
+    .secondCol .tag1{
+        font-size:30px;
+    }
+    h4{
+        font-size: 25px;
     }
 }
