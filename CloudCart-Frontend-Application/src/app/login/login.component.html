@@ -1,5 +1,6 @@
-
-<form [formGroup]="formData" (ngSubmit)="loginCheck()">
+<div class="formPage">
+  
+  <form [formGroup]="formData" (ngSubmit)="loginCheck()">
     <h2>Login</h2>
     <div class="inputData">
        <input type="text" id="email" formControlName="userEmail" autocomplete="off">
@@ -26,3 +27,5 @@
 
     <p id="regi">Don't Have Account? <a routerLink="/signUp">Register</a></p>
 </form>
+
+</div>
