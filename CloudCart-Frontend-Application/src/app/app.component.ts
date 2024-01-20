@@ -8,6 +8,7 @@ import { LoginComponent } from "./login/login.component";
 import {HttpClientModule} from "@angular/common/http";
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { AddProductComponent } from "./add-product/add-product.component";
 
 
 
@@ -17,16 +18,17 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
     imports: [
-               CommonModule,
-               RouterOutlet,
-               NavBarComponent, 
-               SignUpComponent,
-               FooterComponent,
-               MainFrontComponent,
-               LoginComponent,
-               HttpClientModule,FormsModule,
-               ReactiveFormsModule
-               ]
+        CommonModule,
+        RouterOutlet,
+        NavBarComponent,
+        SignUpComponent,
+        FooterComponent,
+        MainFrontComponent,
+        LoginComponent,
+        HttpClientModule, FormsModule,
+        ReactiveFormsModule,
+        AddProductComponent
+    ]
 })
 export class AppComponent {
   title = 'CloudCart';
