@@ -5,6 +5,7 @@ import { MainFrontComponent } from './main-front/main-front.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { authGuardGuard } from './guard/auth-guard.guard';
 
 
 export const routes: Routes = [
@@ -25,7 +26,8 @@ export const routes: Routes = [
     {
         path:"profile",
         component:ProfileComponent,
-        title:"User | Profile"
+        title:"User | Profile",
+        canActivate:[authGuardGuard]
     },
     {
         path:"addProduct",
