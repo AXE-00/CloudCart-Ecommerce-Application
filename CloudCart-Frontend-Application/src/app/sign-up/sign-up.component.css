@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    margin-top: 140px;
+    margin-top: 80px;
 }
 
 h2{
@@ -142,8 +142,27 @@ p{
     margin-top:10px;
 }
 
+@media (max-width:1100px) {
+    
+    .signPage{
+        margin-top: 110px;
+    }
+
+}
+
+@media (max-width:800px) {
+    
+    .signPage{
+        margin-top: 90px;
+    }
+
+}
 
 @media (max-width:697px) {
+
+    .signPage{
+        margin-top: 140px;
+    }
     
    .inputContainer{
     width: 100%;
