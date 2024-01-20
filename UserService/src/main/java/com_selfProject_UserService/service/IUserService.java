@@ -14,4 +14,6 @@ public interface IUserService {
   void removeItemFromFav(String email,int itemId);
   byte[] getUserImage(String email)throws UserNotFoundException;
   String getUserName(String email)throws UserNotFoundException;
+
+  User getUserData(String email) throws UserNotFoundException;
 }

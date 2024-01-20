@@ -27,7 +27,8 @@ public class UserServiceApplication {
 				"/api/v1/userService/item/check",
 				"/api/v1/userService/remove/Item",
 				"/api/v1/userService/get/userName",
-				"/api/v1/userService/get/userImage"
+				"/api/v1/userService/get/userImage",
+				"/api/v1/userService/get/userData"
 		);
 		return filterRegistrationBean;
 	}

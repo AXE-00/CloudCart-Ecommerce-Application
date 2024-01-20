@@ -140,4 +140,14 @@ public class UserService implements IUserService{
         User user = userRepo.findById(email).get();
         return user.getUserName();
     }
+
+    @Override
+    public User getUserData(String email)throws UserNotFoundException {
+        if(userRepo.findById(email).isEmpty()){
+            System.out.println("User not exist"); // user defined exception
+            throw new UserNotFoundException();
+        }
+        User user = userRepo.findById(email).get();
+        return user;
+    }
 }

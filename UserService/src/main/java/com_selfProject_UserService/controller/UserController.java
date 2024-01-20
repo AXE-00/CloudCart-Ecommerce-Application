@@ -17,6 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import java.io.IOException;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/userService")
@@ -93,12 +96,14 @@ public class UserController {
     @GetMapping("/get/userImage")
     public ResponseEntity<?> getUserImage(HttpServletRequest request) throws UserNotFoundException {
         String email = (String)request.getAttribute("attr1");
-        if(email.isEmpty()){
-            return new ResponseEntity<>("check your email again..!",HttpStatus.BAD_REQUEST);
+        byte[] imageData = userService.getUserImage(email);
+        if (imageData==null || email==null || email.isEmpty()){
+            return new ResponseEntity<>("check your email again..!",HttpStatus.NOT_FOUND);
         }
-        else {
-            return new ResponseEntity<>(userService.getUserImage(email),HttpStatus.OK);
-        }
+        String base64Image = Base64.getEncoder().encodeToString(imageData);
+        Map<String,Object> response = new HashMap<>();
+        response.put("imageData",base64Image);
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
     @GetMapping("/get/userName")
@@ -109,6 +114,17 @@ public class UserController {
         }
         else {
             return new ResponseEntity<>(userService.getUserName(email),HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/get/userData")
+    public ResponseEntity<?> getUserData(HttpServletRequest request) throws UserNotFoundException {
+        String email = (String)request.getAttribute("attr1");
+        if(email.isEmpty()){
+            return new ResponseEntity<>("check your email again..!",HttpStatus.BAD_REQUEST);
+        }
+        else {
+            return new ResponseEntity<>(userService.getUserData(email),HttpStatus.OK);
         }
     }
 }
