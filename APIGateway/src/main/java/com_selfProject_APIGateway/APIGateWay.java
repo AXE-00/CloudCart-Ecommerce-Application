@@ -18,6 +18,8 @@ public class APIGateWay {
                         .uri("http://localhost:8081"))
                 .route(p->p.path("/api/v1/userService/**")
                         .uri("http://localhost:8082"))
+                .route(p->p.path("/api/v1/productService/**")
+                        .uri("http://localhost:8083"))
                 .build();
     }
 
