@@ -1,1 +1,24 @@
+<div class="profileContainer">
+    <div class="imageBox">
+      <!-- <img src="../../assets/blob.svg" alt="" id="type"> -->
+      <img [src]="userImg" alt="" id="proImg">
+      
+    </div>
+    
+    <div class="userInfo">
+        <i [routerLink]="'/login'" class="fa fa-edit" id="editIcon"></i>
+        <h1>Aman {{userName}}</h1>
+        <div class="details1">
+            <p>Email : <span style="color: rgb(245, 27, 85);">{{email}}</span></p>
+            <p>Phone Number : <span style="color: rgb(245, 27, 85);">{{phoneNo}}</span></p>
+        </div>
 
+        <ul class="link">
+            <li><a href="">Cart</a></li>
+            <li><a href="">Orders</a></li>
+            <li><a href="">Favourite</a></li>
+        </ul>
+
+        <p id="main"><a href="" >Back To Main menu</a></p>
+    </div>
+</div>
