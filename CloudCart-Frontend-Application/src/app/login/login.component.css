@@ -73,6 +73,16 @@ button{
     border: none;
 }
 
+#forPass{
+    font-size: 13px;
+    margin-top: 5px;
+    margin-left:15px;
+}
+
+#forPass a{
+    text-decoration: none;
+}
+
 button:hover{
     background-color: rgb(41, 111, 241);
 }
