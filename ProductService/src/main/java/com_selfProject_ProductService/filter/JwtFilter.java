@@ -21,7 +21,7 @@ public class JwtFilter extends GenericFilterBean {
 
         String authHeader = httpServletRequest.getHeader("Authorization");
 
-        System.out.println(authHeader);
+        System.out.println("Auth Header : "+authHeader);
         // if authHeader is null or not start with Bearer then throw exception
         if (authHeader == null || !authHeader.startsWith("Bearer")) {
             throw new ServletException("Token is missing.....");
@@ -29,7 +29,7 @@ public class JwtFilter extends GenericFilterBean {
             String token = authHeader.substring(7);
 
             // this will provide us claims(Data) send through token by decoding it using parser()
-            Claims claims = Jwts.parser().setSigningKey("xyZUser").parseClaimsJws(token).getBody();
+            Claims claims = Jwts.parser().setSigningKey("secKey1945").parseClaimsJws(token).getBody();
 
             System.out.println("Claims = " + claims);
 
