@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer,SafeUrl } from '@angular/platform-browser';
 import { UserService } from '../service/user.service';
 import { RouterModule } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateUserComponent } from '../update-user/update-user.component';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +18,7 @@ export class ProfileComponent implements OnInit{
   userName:any='';
   email:any='';
   phoneNo:any='';
-  constructor(private userSer:UserService,private sanitizer:DomSanitizer){}
+  constructor(private userSer:UserService,private sanitizer:DomSanitizer,private dialog:MatDialog){}
 
   ngOnInit(): void {
 
@@ -47,4 +49,9 @@ export class ProfileComponent implements OnInit{
   }
 
 
+  updateUser(){
+    const dialogRef = this.dialog.open(UpdateUserComponent, {
+      width:'auto',
+    });
+  }
 }
