@@ -41,4 +41,14 @@ export class UserService {
   }
   
 
+  updateUser(formData:FormData){
+    let httpHeader = new HttpHeaders({
+      "Authorization":"Bearer "+localStorage.getItem('Token') 
+    });
+    let reqOption = {headers:httpHeader}
+    console.log(reqOption);
+
+    return this.httpClient.put(`${this.userUrl}/update/user`,formData,reqOption)
+  }
+
 }
