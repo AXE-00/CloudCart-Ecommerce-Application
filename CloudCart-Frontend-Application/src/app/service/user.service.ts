@@ -29,6 +29,16 @@ export class UserService {
 
     return this.httpClient.get(`${this.userUrl}/get/userImage`,reqOption);
   }
+
+  getUserData(){
+    let httpHeader = new HttpHeaders({
+      "Authorization":"Bearer "+localStorage.getItem('Token') 
+    });
+    let reqOption = {headers:httpHeader}
+    console.log(reqOption);
+
+    return this.httpClient.get(`${this.userUrl}/get/userData`,reqOption);
+  }
   
 
 }
