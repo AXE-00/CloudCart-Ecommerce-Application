@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("api/v1/product")
+@RequestMapping("/api/v1/productService")
 public class ProductController {
 
     @Autowired
@@ -20,7 +20,9 @@ public class ProductController {
 
     @PostMapping("/addNewProduct")
     public ResponseEntity<?> addProduct(HttpServletRequest httpServletRequest, @RequestBody Product product) throws ProductAlreadyExistsException {
-        if (httpServletRequest.getAttribute("attr2").equals("adminRole")) {
+        String role = (String)httpServletRequest.getAttribute("attr2");
+
+        if ("adminRole".equals(role)) {
             return new ResponseEntity<>(productService.addProducts(product), HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>("You are not authorized to add new products", HttpStatus.UNAUTHORIZED);
