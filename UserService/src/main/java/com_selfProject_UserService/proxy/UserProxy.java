@@ -13,6 +13,6 @@ public interface UserProxy {
     @PostMapping("api/v1/authService/addUser")
     public ResponseEntity<?> registerUser(@RequestBody UserDto userDto);
 
-    @PutMapping("api/vi/authService/user/Update/{email}")
+    @PutMapping("api/v1/authService/user/Update/{email}")
     public ResponseEntity<?> updateUser(@RequestBody UserDto userDto,@PathVariable String email);
 }
