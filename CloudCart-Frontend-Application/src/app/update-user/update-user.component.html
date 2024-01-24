@@ -8,9 +8,9 @@
     <!-- name -->
     <div id="nameInp">
         <span>Name</span>
-        <input type="text"  formControlName="name">
+        <input type="text"  formControlName="userName">
     
-        <div id="err" *ngIf="name?.errors?.['minlength']">
+        <div id="err" *ngIf="updationForm.get('userName')?.errors?.['minlength']">
             Name must be {{name?.errors?.['minlength'].requiredLength}} characters long
         </div>
     </div>
