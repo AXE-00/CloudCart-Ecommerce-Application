@@ -34,14 +34,14 @@ export class UpdateUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUserData().subscribe((data:any)=>{
-      this.userName = data.name;
+      this.userName = data.userName;
       console.log(this.userName);
       
-      this.userName = data.name;
+      this.userName = data.userName;
       this.userPhone = data.phoneNo;
 
       this.updationForm.patchValue({
-        name: this.userName,
+        userName: this.userName,
         phoneNo: this.userPhone
       });
      })
@@ -49,13 +49,13 @@ export class UpdateUserComponent implements OnInit {
 
   updationForm = this.fb.group({
     
-    name:['',[Validators.minLength(3)]],
+    userName:['',[Validators.minLength(3)]],
     phoneNo:[null,[Validators.pattern(/^[789]\d{9,9}$/)]]
     
   })
 
   get name(){
-    return this.updationForm.get('name');
+    return this.updationForm.get('userName');
   }
 
   get phone(){
@@ -83,13 +83,14 @@ export class UpdateUserComponent implements OnInit {
     
     const fData = new FormData();
     // form data alway supports string file
-    fData.append('userInfo', JSON.stringify(userData));
+    fData.append('userData', JSON.stringify(userData));
     fData.append('file',this.uploadedImage);
 
     this.userService.updateUser(fData).subscribe({
       next:data=>{
-        this.router.navigateByUrl("")
+        this.router.navigateByUrl("/profile")
         this.dialogRef.close();
+
         this._sanckBar.open('Updated successfully.....', 'success', {
           duration: 3000,
           panelClass: ['mat-toolbar', 'blue']
