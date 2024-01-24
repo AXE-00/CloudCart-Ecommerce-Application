@@ -49,12 +49,14 @@ public class AuthController {
 
     @PutMapping("/user/Update/{email}")
     public ResponseEntity<?> updateUser(@RequestBody UserDto userDto,@PathVariable String email) throws UserNotFound {
+        System.out.println(userDto);
         User user = new User(userDto.getUserEmail(),
                              userDto.getUserName(),
                              userDto.getPassword(),
                              userDto.getRole(),
                              userDto.getPhoneNo(),
                              userDto.getImageName());
+        System.out.println(user);
         return new ResponseEntity<>(authService.updateUser(email,user),HttpStatus.OK);
     }
 
