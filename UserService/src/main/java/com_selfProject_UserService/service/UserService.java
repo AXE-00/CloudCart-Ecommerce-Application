@@ -1,5 +1,6 @@
 package com_selfProject_UserService.service;
 
+import com_selfProject_UserService.config.EcommDTO;
 import com_selfProject_UserService.domain.FavItems;
 import com_selfProject_UserService.domain.User;
 import com_selfProject_UserService.domain.UserDto;
@@ -7,6 +8,10 @@ import com_selfProject_UserService.exception.UserAlreadyExist;
 import com_selfProject_UserService.exception.UserNotFoundException;
 import com_selfProject_UserService.proxy.UserProxy;
 import com_selfProject_UserService.repository.UserRepo;
+import org.json.simple.JSONObject;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +22,20 @@ import java.util.List;
 public class UserService implements IUserService{
 
     private final UserRepo userRepo;
-    private UserProxy userProxy;
+    private final UserProxy userProxy;
+    private final RabbitTemplate rabbitTemplate;
+    private final DirectExchange directExchange;
+
 
     @Autowired
-    public UserService(UserRepo userRepo, UserProxy userProxy) {
+    public UserService(UserRepo userRepo, UserProxy userProxy, RabbitTemplate rabbitTemplate, DirectExchange directExchange) {
         this.userRepo = userRepo;
         this.userProxy = userProxy;
+        this.rabbitTemplate = rabbitTemplate;
+        this.directExchange = directExchange;
     }
 
+//    @RabbitListener(queues = "EmailQueue")
     @Override
     public User addUser(User user) throws UserAlreadyExist {
         System.out.println("add user in service");
@@ -43,7 +54,27 @@ public class UserService implements IUserService{
         System.out.println(userDto);
 
         userProxy.registerUser(userDto);
-        return userRepo.save(user);
+        User savedUser = userRepo.save(user);
+
+        String message = "Dear " + user.getUserName() + ",\n\n" +
+                "Thank you for joining CloudCart! We are delighted to have you.\n\n" +
+                user.getUserName()+ ", If you have any questions or need assistance, feel free to reach out to our support team.\n\n" +
+                "Once again, welcome to CloudCart!\n\n" +
+                "Best regards,\n" +
+                "Team CloudCart\n";
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("to",user.getUserEmail());
+        jsonObject.put("subject","Welcome to CloudCart!");
+        jsonObject.put("message",message);
+
+        EcommDTO ecommDTO = new EcommDTO();
+        ecommDTO.setJsonObject(jsonObject);
+        rabbitTemplate.convertAndSend(directExchange.getName(),"Cloud-Key",ecommDTO);
+
+        System.out.println("success :" + directExchange.getName());
+
+        return savedUser;
     }
 
     @Override
