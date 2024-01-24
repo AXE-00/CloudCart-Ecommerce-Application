@@ -34,7 +34,8 @@ public class AuthService implements IAuthService{
     @Override
     public User updateUser(String email, User user) throws UserNotFound {
         if(authRepo.findById(email).isPresent()){
-            User existingUser = authRepo.findByUserEmailAndPassword(user.getUserEmail(), user.getPassword());
+            User existingUser = authRepo.findById(email).get();
+            // System.out.println(existingUser);
             if(user.getUserName()!=null){
                 existingUser.setUserName(user.getUserName());
             }
