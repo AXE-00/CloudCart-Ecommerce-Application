@@ -49,6 +49,9 @@
     right: 20px;
     font-size: 20px;color: white;
     cursor: pointer;
+    background-color: rgb(252, 16, 83);
+    padding:7px;
+    border-radius: 50%;
 }
 
 h1{
@@ -64,7 +67,7 @@ h1{
     display: flex;
     justify-content: space-evenly;
     font-size: 15px;font-weight: 500;
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 .link{
@@ -76,16 +79,17 @@ h1{
 
 a{
     text-decoration: none;
-    color: rgb(140, 46, 248);
+    color: rgb(112, 5, 151);
+    padding: 3px 4px;
 }
 
 a:hover{
-    color: rgb(255, 0, 85);
+    color: rgb(255, 0, 76);
 }
 
 #main{
     text-align: center;
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 @media (max-width:947px) {
