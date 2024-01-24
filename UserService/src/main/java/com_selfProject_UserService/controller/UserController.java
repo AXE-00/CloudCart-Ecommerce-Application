@@ -45,10 +45,13 @@ public class UserController {
            return new ResponseEntity<>(userService.addUser(user1), HttpStatus.CREATED);
     }
 
+
     @PutMapping("/update/user")
     public ResponseEntity<?> updateUser(HttpServletRequest request,@RequestParam(value = "file",required = false) MultipartFile file,@RequestParam("userData")String user) throws IOException, UserNotFoundException {
         String email = (String)request.getAttribute("attr1"); //attr1=email
         User user1 = new ObjectMapper().readValue(user,User.class);
+        System.out.println(email);
+        System.out.println(user1);
         if(file!=null && !file.isEmpty()){
             user1.setUserImage(file.getBytes());
             String fileName = file.getOriginalFilename();
