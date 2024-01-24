@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule,ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AbstractControl } from '@angular/forms';
 import { RegiService } from '../service/regi.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -18,7 +18,7 @@ export class SignUpComponent {
   fileName="No file choosen";
   uploadedImg:any = File;
   
-  constructor(private fb:FormBuilder,private regiService:RegiService,private _matSnack:MatSnackBar){}
+  constructor(private fb:FormBuilder,private regiService:RegiService,private _matSnack:MatSnackBar,private router:Router){}
 
   formData=this.fb.group({
     userName:["",Validators.required],
@@ -90,6 +90,7 @@ export class SignUpComponent {
         this._matSnack.open("User Added Successfully..!");
       }
     })
+    this.router.navigateByUrl('/login');
   }
 
 }
