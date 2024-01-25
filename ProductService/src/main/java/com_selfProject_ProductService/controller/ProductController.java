@@ -44,6 +44,11 @@ public class ProductController {
         return new ResponseEntity<>(productService.getById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/getByCategory/{category}")
+    public ResponseEntity<?> getByCategory(@PathVariable String category){
+        return new ResponseEntity<>(productService.getProductByCategory(category),HttpStatus.OK);
+    }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateProduct(HttpServletRequest httpServletRequest, @RequestBody Product product, @PathVariable int id) {
         if (httpServletRequest.getAttribute("attr2").equals("adminRole")) {

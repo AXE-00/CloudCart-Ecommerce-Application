@@ -7,6 +7,7 @@ import com_selfProject_ProductService.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,6 +45,18 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getById(int productId) {
         return productRepository.findById(productId).get();
+    }
+
+    @Override
+    public List<Product> getProductByCategory(String category){
+        List<Product>proByCategory=new ArrayList<>();
+        List<Product> productList = productRepository.findAll();
+        for(Product product:productList){
+            if(category.equals(product.getCategory())){
+                proByCategory.add(product);
+            }
+        }
+        return proByCategory;
     }
 
     @Override
