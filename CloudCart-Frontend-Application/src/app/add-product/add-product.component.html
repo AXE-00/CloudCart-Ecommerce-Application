@@ -12,11 +12,20 @@
 
             <div>
                 <label for="category">Category:</label>
-                <input type="text" id="category" placeholder="Enter Category" formControlName="category" autocomplete="off">
+                <select id="category" formControlName="category">
+                  <option value="" disabled selected>Select Category</option>
+                  <option value="mens">Mens</option>
+                  <option value="women">Women</option>
+                  <option value="kids">Kids</option>
+                  <option value="ethnic">Ethnic</option>
+                  <option value="footwear">Footwear</option>
+                  <option value="electronic">Electronic</option>
+                  <option value="kitchen">Kitchen</option>
+                </select>
                 <div id="err" *ngIf="productForm.get('category')?.errors?.['required'] && productForm.get('category')?.dirty">
-                    Category is Required
+                  Category is Required
                 </div>
-            </div>
+              </div>
 
         </div>
 
