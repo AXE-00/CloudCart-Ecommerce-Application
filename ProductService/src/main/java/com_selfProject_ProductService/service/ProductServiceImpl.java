@@ -20,6 +20,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product addProducts(Product product) throws ProductAlreadyExistsException {
+        int id = productRepository.findAll().size()+1;
+        product.setProductId(id);
         int productId = product.getProductId();
         Optional<Product> optionalProduct = this.productRepository.findById(productId);
         if (optionalProduct.isPresent()) {
