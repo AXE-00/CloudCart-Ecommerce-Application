@@ -87,10 +87,17 @@ export class SignUpComponent {
     this.regiService.registerUser(fd).subscribe({
       next:data=>{
         console.log("Success",data);
-        this._matSnack.open("User Added Successfully..!");
+        this._matSnack.open('Registered Successfully.....', 'success', {
+          duration: 2000,
+          panelClass: ['mat-toolbar', 'mat-primary']
+        });
+        this.router.navigateByUrl('/login');
+      },
+      error:err=>{
+        
       }
     })
-    this.router.navigateByUrl('/login');
+   
   }
 
 }
