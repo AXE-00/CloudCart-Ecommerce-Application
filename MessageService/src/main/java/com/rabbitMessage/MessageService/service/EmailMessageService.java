@@ -8,6 +8,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
 @Service
 public class EmailMessageService implements IEmailMessageService {
     private JavaMailSender javaMailSender;
@@ -30,7 +32,7 @@ public class EmailMessageService implements IEmailMessageService {
         emailMessage.setMessage(message);
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom("amanp.dec19@gmail.com");
+        simpleMailMessage.setFrom("cloudcartecommerce@gmail.com");
         simpleMailMessage.setTo(to);
         simpleMailMessage.setSubject(subject);
         simpleMailMessage.setText(message);
@@ -41,7 +43,7 @@ public class EmailMessageService implements IEmailMessageService {
     @Override
     public void userWelcome(String to, String subject, String message) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom("amanp.dec19@gmail.com");
+        simpleMailMessage.setFrom("cloudcartecommerce@gmail.com");
         simpleMailMessage.setTo(to);
         simpleMailMessage.setSubject(subject);
         simpleMailMessage.setText(message);
@@ -50,7 +52,24 @@ public class EmailMessageService implements IEmailMessageService {
     }
 
     @Override
-    public int sendOtp(String name, String email) {
-        return 0;
+    public int sendOtp(String userEmail) {
+        Random ranNum = new Random();
+        int otpNum = ranNum.nextInt(1111,9999);
+        String emailContent = "Please find below your One-Time Password (OTP) for account verification:\n" +
+                              "\n" +
+                              "OTP: "+otpNum+"\n" +
+                              "\n" +
+                              "Kindly enter this OTP within the designated timeframe to complete the verification process.\n" +
+                              "\n" +
+                              "Best regards,\n" +
+                              "Cloud Cart Team";
+        String subject ="Supplier Verification.";
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setText(emailContent);
+        simpleMailMessage.setSubject(subject);
+        simpleMailMessage.setFrom("cloudcartecommerce@gmail.com");
+        simpleMailMessage.setTo(userEmail);
+        javaMailSender.send(simpleMailMessage);
+        return otpNum;
     }
 }
