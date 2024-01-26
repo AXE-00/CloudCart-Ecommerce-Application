@@ -2,15 +2,6 @@
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <div class="form-row">
             <div>
-                <label for="productId">Product ID:</label>
-                <input type="text" id="productId" placeholder="Enter Product ID" formControlName="productId" autocomplete="off">
-
-                <div id="err" *ngIf="productForm.get('productId')?.errors?.['required'] && productForm.get('productId')?.dirty">
-                    Product Id is Required
-                </div>
-            </div>
-
-            <div>
                 <label for="category">Category:</label>
                 <select id="category" formControlName="category">
                   <option value="" disabled selected>Select Category</option>

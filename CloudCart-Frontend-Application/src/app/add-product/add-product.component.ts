@@ -16,7 +16,6 @@ export class AddProductComponent {
   constructor(private fb:FormBuilder,private productService:ProductService,private _snackBar:MatSnackBar){}
 
   productForm = this.fb.group({
-    productId:["",Validators.required],
     category:["",Validators.required],
     productName:["",Validators.required],
     productPrice:["",Validators.required],
@@ -32,12 +31,16 @@ export class AddProductComponent {
   onSubmit(){
     this.productService.addProduct(this.productForm.value).subscribe({
       next:data =>{
-
         this._snackBar.open('Product added successfully.....', 'success', {
           duration: 2000,
           panelClass: ['mat-toolbar', 'mat-primary']
         });
-        
+      },
+      error:err=>{
+        this._snackBar.open('Product is not added.....', 'Failure', {
+          duration: 2000,
+          panelClass: ['mat-toolbar', 'mat-primary']
+        });
       }
     })
   }
