@@ -22,12 +22,13 @@ export class ProfileComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.userName=localStorage.getItem('name');
+    // this.userName=localStorage.getItem('name');
     this.userSer.getUserData().subscribe((data:any)=>{
         if(data){
              console.log(data);
              this.email = data.userEmail;
              this.phoneNo = data.phoneNo;
+             this.userName = data.userName;
         }
     })
 
