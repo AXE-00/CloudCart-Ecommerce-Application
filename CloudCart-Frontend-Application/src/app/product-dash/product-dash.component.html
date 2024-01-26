@@ -1,1 +1,39 @@
-<p>product-dash works!</p>
+
+<!-- <div *ngFor="let product of productsData">
+    <h3>{{product.productName}}</h3>
+    <img src={{product.imageUrl}} alt="">
+</div> -->
+
+<!-- <div class="productBoard">
+   <div class="proCard">
+      <img src="../../assets/blob.svg" alt="">
+      <h2>Tri-Cycle</h2>
+      <h3>₹1999 <span>onward</span></h3>
+      <p id="delivery">Free Delivery</p>
+      <div class="ratings">
+        <p id="rat">4<i class="fa fa-star"></i></p><span>2400 Reviews</span>
+      </div>
+   </div>
+</div> -->
+
+<div class="productBoard">
+    <div class="cards" *ngIf="productsLoaded">
+        <div class="proCard" *ngFor="let product of productsData">
+            <div class="imgCont">
+               <img src="{{product.imageUrl}}" alt="">
+               <div class="like"><i class="fa fa-like" style="color: red;"></i></div>
+            </div>
+            <h2>{{product.productName}}</h2>
+            <h3>₹{{product.productPrice}} <span>onward</span></h3>
+            <p *ngIf="product.productPrice>499" id="delivery">Free Delivery</p>
+            <div class="ratings">
+              <p id="rat">{{product.productRating}}<i class="fa fa-star"></i></p><span>2400 Reviews</span>
+            </div>
+         </div>
+    </div>
+    <div class="cards" *ngIf="!productsLoaded">
+      <div class="loader">
+         <img src="../../assets/Pinwheel.gif" alt="" id="imgLoader">
+      </div>
+   </div>
+ </div>
