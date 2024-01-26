@@ -10,13 +10,13 @@ import com_selfProject_UserService.proxy.UserProxy;
 import com_selfProject_UserService.repository.UserRepo;
 import org.json.simple.JSONObject;
 import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Service
 public class UserService implements IUserService{
