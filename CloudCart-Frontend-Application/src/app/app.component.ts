@@ -9,6 +9,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from "./add-product/add-product.component";
+import { SupplierDashboardComponent } from "./supplier-dashboard/supplier-dashboard.component";
 
 
 
@@ -27,7 +28,8 @@ import { AddProductComponent } from "./add-product/add-product.component";
         LoginComponent,
         HttpClientModule, FormsModule,
         ReactiveFormsModule,
-        AddProductComponent
+        AddProductComponent,
+        SupplierDashboardComponent
     ]
 })
 export class AppComponent {
