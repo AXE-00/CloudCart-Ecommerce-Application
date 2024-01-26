@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,10 @@ export class UserService {
     console.log(reqOption);
 
     return this.httpClient.put(`${this.userUrl}/update/user`,formData,reqOption)
+  }
+
+  getOtp(userEmail:string){
+    return this.httpClient.get(`http://localhost:9000/api/v1/emailService/send-otp/${userEmail}`)
   }
 
 }
