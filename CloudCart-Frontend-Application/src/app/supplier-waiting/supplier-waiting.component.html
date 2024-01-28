@@ -1,0 +1,26 @@
+<app-admin-dashboard></app-admin-dashboard>
+
+<div id="board">
+   <div class="cardData" *ngIf="dataPresent">
+      <div class="cards" *ngIf="listLoaded">
+         <div class="userCard" *ngFor="let suppWait of supplierWaiting">
+             <div class="imgCont">
+                <img [src]="userImg" alt="">
+             </div>
+             <h2>{{suppWait.userName}}</h2>
+             <h3>{{suppWait.userEmail}}</h3>
+             <p style="text-align: center;">Mobile No: {{suppWait.phoneNo}}</p>
+             <div class="btns">
+                <a (click)="reqApproved(suppWait.userEmail)">Approve</a>
+                <a (click)="deniedReq(suppWait.userEmail)">Denied</a>
+             </div>
+          </div>
+     </div>
+   </div>
+    
+    <div class="cards" *ngIf="!listLoaded">
+      <div class="loader">
+         <img src="../../assets/Pinwheel.gif" alt="" id="imgLoader">
+      </div>
+   </div>
+</div>
