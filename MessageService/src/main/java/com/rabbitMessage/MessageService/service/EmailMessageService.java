@@ -38,6 +38,7 @@ public class EmailMessageService implements IEmailMessageService {
         simpleMailMessage.setText(message);
         javaMailSender.send(simpleMailMessage);
         System.out.println("Success");
+        System.out.println("Success welcome sendEmail");
     }
 
     @Override
@@ -48,7 +49,29 @@ public class EmailMessageService implements IEmailMessageService {
         simpleMailMessage.setSubject(subject);
         simpleMailMessage.setText(message);
         javaMailSender.send(simpleMailMessage);
-        System.out.println("Success");
+        System.out.println("Success welcome user");
+    }
+
+    @RabbitListener(queues = "EmailQueue")
+    @Override
+    public void reqApproved(EcommDTO ecommDTO) {
+        EmailMessage emailMessage = new EmailMessage();
+
+        String to = ecommDTO.getJsonObject().get("to").toString();
+        String subject = ecommDTO.getJsonObject().get("subject").toString();
+        String message = ecommDTO.getJsonObject().get("message").toString();
+
+        emailMessage.setTo(to);
+        emailMessage.setSubject(subject);
+        emailMessage.setMessage(message);
+
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom("cloudcartecommerce@gmail.com");
+        simpleMailMessage.setTo(to);
+        simpleMailMessage.setSubject(subject);
+        simpleMailMessage.setText(message);
+        javaMailSender.send(simpleMailMessage);
+        System.out.println("Request Approved");
     }
 
     @Override

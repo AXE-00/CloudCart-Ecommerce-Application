@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/emailService")
 public class MessageController {
-    private IEmailMessageService iEmailMessageService;
+    private final IEmailMessageService iEmailMessageService;
 
     @Autowired
     public MessageController(IEmailMessageService iEmailMessageService) {
@@ -17,10 +17,11 @@ public class MessageController {
     }
 
     @GetMapping("/send-email")
-    public ResponseEntity<?> sendEmail(@RequestBody EmailMessage emailMessage){
+    public ResponseEntity<?> sendEmail(@RequestBody EmailMessage emailMessage) {
         this.iEmailMessageService.userWelcome(emailMessage.getTo(), emailMessage.getSubject(), emailMessage.getMessage());
-        return  ResponseEntity.ok("Successfully send");
+        return ResponseEntity.ok("Successfully send");
     }
+
 
     @GetMapping("/send-otp/{email}")
     public ResponseEntity<?> sendOtp(@PathVariable String email){
