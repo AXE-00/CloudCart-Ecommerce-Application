@@ -1,9 +1,7 @@
 package com_selfProject_UserService.service;
 
 import com_selfProject_UserService.config.EcommDTO;
-import com_selfProject_UserService.domain.FavItems;
-import com_selfProject_UserService.domain.User;
-import com_selfProject_UserService.domain.UserDto;
+import com_selfProject_UserService.domain.*;
 import com_selfProject_UserService.exception.UserAlreadyExist;
 import com_selfProject_UserService.exception.UserNotFoundException;
 import com_selfProject_UserService.proxy.UserProxy;
@@ -151,7 +149,6 @@ public class UserService implements IUserService{
           }
       }
     }
-
     @Override
     public byte[] getUserImage(String email)throws UserNotFoundException {
         if(userRepo.findById(email).isEmpty()){
