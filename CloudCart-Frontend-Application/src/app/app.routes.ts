@@ -6,6 +6,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { authGuardGuard } from './guard/auth-guard.guard';
 import { SupplierDashboardComponent } from './supplier-dashboard/supplier-dashboard.component';
+import { SupplierVerificationComponent } from './supplier-verification/supplier-verification.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { SupplierWaitingComponent } from './supplier-waiting/supplier-waiting.component';
 
 
 export const routes: Routes = [
@@ -27,7 +30,7 @@ export const routes: Routes = [
         path:"profile",
         component:ProfileComponent,
         title:"User | Profile",
-        // canActivate:[authGuardGuard]
+        canActivate:[authGuardGuard]
     },
     {
         path:"addProduct",
@@ -37,6 +40,23 @@ export const routes: Routes = [
     {
         path:"supplierDash",
         component:SupplierDashboardComponent,
-        title:"Supplier | Dashboard"
+        title:"Supplier | Dashboard",
+        canActivate:[authGuardGuard]
+    },
+    {
+        path:"suppVerification",
+        component:SupplierVerificationComponent,
+        title:"Supplier | Verification",
+        canActivate:[authGuardGuard]
+    },
+    {
+        path:"adminDash",
+        component:AdminDashboardComponent,
+        title:"Admin Dashboard"
+    },
+    {
+        path:"supplierWait",
+        component:SupplierWaitingComponent,
+        title:"Approval"
     }
 ];
