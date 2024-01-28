@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from '../service/product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-add-product',
@@ -11,9 +12,24 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css'
 })
-export class AddProductComponent {
+export class AddProductComponent implements OnInit{
 
-  constructor(private fb:FormBuilder,private productService:ProductService,private _snackBar:MatSnackBar){}
+  userEmail:any;
+
+  constructor(
+        private fb:FormBuilder,
+        private productService:ProductService,
+        private _snackBar:MatSnackBar,
+        private userSer:UserService
+        ){}
+
+  ngOnInit(): void {
+    this.userSer.getUserData().subscribe({
+      next:(data:any)=>{
+        this.userEmail=data.userEmail;//getting
+      }
+    })
+  }
 
   productForm = this.fb.group({
     category:["",Validators.required],
@@ -23,6 +39,7 @@ export class AddProductComponent {
     productRating:["",Validators.required],
     description:["",Validators.required],
   })
+
 
   getProductId(){
     return this.productForm.get('productId')?.value;
