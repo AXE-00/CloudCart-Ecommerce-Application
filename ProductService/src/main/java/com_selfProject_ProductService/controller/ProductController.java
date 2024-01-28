@@ -19,10 +19,10 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping("/addNewProduct")
-    public ResponseEntity<?> addProduct(HttpServletRequest httpServletRequest, @RequestBody Product product) throws ProductAlreadyExistsException {
+    public ResponseEntity<?> addProduct(HttpServletRequest httpServletRequest, @RequestBody Product product,@RequestParam String supRole) throws ProductAlreadyExistsException {
         String role = (String)httpServletRequest.getAttribute("attr2");
 
-        if ("adminRole".equals(role)) {
+        if ("adminRole".equals(role) || "supplier".equals(supRole)) {
             return new ResponseEntity<>(productService.addProducts(product), HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>("You are not authorized to add new products", HttpStatus.UNAUTHORIZED);
