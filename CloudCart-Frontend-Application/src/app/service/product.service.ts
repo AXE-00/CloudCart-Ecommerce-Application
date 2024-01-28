@@ -19,7 +19,7 @@ export class ProductService {
     let reqOption = {headers:httpHeader}
     console.log(reqOption);
     
-    return this.httpClient.post(`${this.productUrl}/addNewProduct`,formData,reqOption)
+    return this.httpClient.post(`${this.productUrl}/addNewProduct?supRole=${localStorage.getItem('supRole')}`,formData,reqOption)
   }
 
   getAllProduct(){
