@@ -1,7 +1,3 @@
-.supplierDash{
-    margin-top: 100px;
-}
-
 @font-face {
     font-family:squid;
     src: url(../../assets/font/Game\ Of\ Squids.ttf);
@@ -32,6 +28,7 @@
     display:flex;
     justify-content: center;
     align-items: center;
+    height: 80vh;
     gap: 10px;
 }
 

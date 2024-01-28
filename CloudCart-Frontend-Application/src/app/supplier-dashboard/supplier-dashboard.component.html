@@ -1,24 +1,6 @@
 <div class="supplierDash">
 
-    <div class="reqSend" *ngIf="otpClicked">
-        <h2>Verification</h2>
-        <!-- <h2>Check your E-mail for verification code</h2> -->
-        <!-- <p id="emailU">{{userEmail}}</p> -->
-        <p style="font-size: 17px;font-weight: 500;">Enter your E-mail to get the verification code</p>
-       <input type="text" [(ngModel)]="userEmail" id="uEmail">
-       <a (click)="getOtp()" class="btn">Get OTP</a>
-    </div>
-
-    <div class="reqSend" *ngIf="verifyClicked">
-        <h2>Check your E-mail for verification code</h2>
-        <p id="emailU">{{userEmail}}</p>
-       <input type="text" [(ngModel)]="otpGet" id="uEmail" placeholder="Enter your OTP">
-       <p style="color: rgb(66, 128, 243);">You have {{timeLeft}} second left</p>
-       <a (click)="verifyOtp()" class="btn">Verify</a>
-    </div>
-
-    
-    <div class="supplierPro" *ngIf="supplierVerified">
+    <div class="supplierPro">
         <div class="supInfo">
             <div class="supImage">
                 <img src="../../assets/main.png" alt="">
@@ -39,5 +21,5 @@
             </div>
         </div>
     </div>
-    <router-outlet></router-outlet>
+   
 </div>
