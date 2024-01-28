@@ -1,31 +1,59 @@
 import { Component, OnInit} from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../service/login.service';
 import { UserService } from '../service/user.service';
+import { SupplierService } from '../service/supplier.service';
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent implements OnInit{
   
 userName:any;
+supplierRole:any;
 loginTime:any="Login";
+supplierValid:boolean=false;
+supplierVer:boolean=true;
+role=true;
 
-constructor(private logService:LoginService,private userSer:UserService, private router :Router){}
+constructor(private logService:LoginService,private userSer:UserService,private supService:SupplierService, private router :Router){}
   ngOnInit(): void {
     
     this.userName ="User" ;
+    
 
     this.logService.userLoggedIn.subscribe(()=>{
 
       this.userName = localStorage.getItem('name');
         this.loginTime="LogOut";
 
+        console.log(this.supplierRole=='supplier');
+
+        this.supService.getSupplierRole().subscribe({
+          next:(data:any)=>{
+            console.log(data);
+            this.supplierRole = data.suppRole;
+            localStorage.setItem('supRole',this.supplierRole);
+            if(this.supplierRole=='supplier'){
+        
+              this.supplierValid=true;
+              this.supplierVer=false;
+            }  
+          } 
+        })
+       
+
+      if(localStorage.getItem('role')==='adminRole'){
+        this.role=false;
+        this.supplierVer=false;
+      }
     })
+    
   }
 
   clicked(){
@@ -33,6 +61,8 @@ constructor(private logService:LoginService,private userSer:UserService, private
       this.router.navigateByUrl('/login');
     }
     if(this.loginTime === 'LogOut'){
+      this.role=true;
+      this.supplierVer=true;
       this.logService.loginfailure();
       localStorage.clear();
       this.router.navigateByUrl("/login")

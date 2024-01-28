@@ -5,6 +5,7 @@
     top:0;
     z-index: 999;
     justify-content: space-around;
+    border-bottom: rgb(198, 197, 197) 1px solid;
 }
 
 @font-face {
@@ -117,7 +118,7 @@ a{
 
 .listLink {
     width: 100%;
-    margin-bottom: -15px;
+    margin-bottom: -17px;
 }
 
 .typeList {

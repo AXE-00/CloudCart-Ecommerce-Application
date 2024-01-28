@@ -8,7 +8,9 @@
 
 
     <ul class="list">
-        <li><a [routerLink]="'/supplierDash'">Become a Supplier</a></li>
+        <li *ngIf="!role"><a [routerLink]="'/adminDash'">Admin Dash</a></li>
+        <li *ngIf="supplierVer"><a [routerLink]="'/suppVerification'">Become a Supplier</a></li>
+        <li *ngIf="supplierValid"><a [routerLink]="'/supplierDash'">Supplier</a></li>
         <li class="profile">
             <a [routerLink]="'/profile'">
                 <i class="fa fa-user" style="margin-right: 5px;"></i>Profile</a>
@@ -19,7 +21,7 @@
         </li>
         <li><a href="#">Cart</a></li>
     </ul>
-    <div class="listLink">
+    <div class="listLink" *ngIf="role">
         
         <div class="menu-icon" (click)="toggleMenu()">
         <i class="fa fa-angle-down"></i></div>
