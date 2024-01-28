@@ -5,6 +5,7 @@ import com_selfProject_UserService.domain.FavItems;
 import com_selfProject_UserService.domain.User;
 import com_selfProject_UserService.exception.UserAlreadyExist;
 import com_selfProject_UserService.exception.UserNotFoundException;
+import com_selfProject_UserService.service.ISupplierService;
 import com_selfProject_UserService.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.io.FilenameUtils;
@@ -25,11 +26,13 @@ import java.util.Map;
 @RequestMapping("/api/v1/userService")
 public class UserController {
 
-    private UserService userService;
-    @Autowired
+    private final UserService userService;
+    private final ISupplierService iSupplierService;
 
-    public UserController(UserService iUserService) {
-        this.userService = iUserService;
+    @Autowired
+    public UserController(UserService userService, ISupplierService iSupplierService) {
+        this.userService = userService;
+        this.iSupplierService = iSupplierService;
     }
 
     @PostMapping("/register/user")
@@ -72,6 +75,7 @@ public class UserController {
             return new ResponseEntity<>(userService.addItemInList(email,favItems),HttpStatus.OK);
         }
     }
+
 
     @GetMapping("/item/check")
     public ResponseEntity<?>checkItemExist(HttpServletRequest servletRequest,@RequestParam int itemId){
@@ -129,5 +133,62 @@ public class UserController {
         else {
             return new ResponseEntity<>(userService.getUserData(email),HttpStatus.OK);
         }
+    }
+
+    // http://localhost:9000/api/v1/userService/add/supplier/{email}
+    @GetMapping("/add/supplier/{email}")
+    public ResponseEntity<?> addSupplier(@PathVariable String email) throws UserNotFoundException {
+        System.out.println(email);
+        User user  = userService.getUserData(email);
+        if(user==null){
+            throw new UserNotFoundException();
+        }
+        else {
+            return new ResponseEntity<>(iSupplierService.addSupplier(user),HttpStatus.OK);
+        }
+    }
+
+    //  http://localhost:9000/api/v1/userService/getSupplier/waiting
+    @GetMapping("/getSupplier/waiting")
+    public ResponseEntity<?> waitingForApproval(HttpServletRequest httpServletRequest){
+        String email = (String)httpServletRequest.getAttribute("attr1");
+        if(email.isEmpty()){
+            return new ResponseEntity<>("User Not Found",HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(iSupplierService.getSuppliersWaiting(),HttpStatus.OK);
+    }
+
+    // http://localhost:9000/api/v1/userService/getSupplier/image/{email}
+    @GetMapping("/getSupplier/image/{email}")
+    public ResponseEntity<?> waitingUserImg(@PathVariable String email) throws UserNotFoundException {
+        byte[] imageData = iSupplierService.getUserImage(email);
+        if(imageData==null || email==null || email.isEmpty()){
+            return new ResponseEntity<>("User Not Found",HttpStatus.NOT_FOUND);
+        }
+        String base64Image = Base64.getEncoder().encodeToString(imageData);
+        Map<String,Object> response = new HashMap<>();
+        response.put("imageData",base64Image);
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+
+    // http://localhost:9000/api/v1/userService/approveOrDeny/{email}/{supType}
+    @GetMapping("/approveOrDeny")
+    public ResponseEntity<?>approveOrDenyReq(HttpServletRequest httpServletRequest,@RequestParam String email, @RequestParam boolean supType){
+        String adminRole = (String)httpServletRequest.getAttribute("attr2");
+        System.out.println("Role ===> "+adminRole);
+        if(adminRole.isEmpty()){
+            System.out.println("You are Not Authorized");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        else {
+            iSupplierService.approveOrNot(email,supType);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
+    // http://localhost:9000/api/v1/userService/getUserRole
+    @GetMapping("/getUserRole")
+    public ResponseEntity<?>getSupplierRole(HttpServletRequest httpServletRequest)throws UserNotFoundException{
+        String email = (String)httpServletRequest.getAttribute("attr1");
+        return new ResponseEntity<>(iSupplierService.supplierRole(email),HttpStatus.OK);
     }
 }
