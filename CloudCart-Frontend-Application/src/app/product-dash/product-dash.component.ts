@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../service/product.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-dash',
@@ -15,7 +16,7 @@ export class ProductDashComponent implements OnInit {
   productsData:any=[];
   productsLoaded:boolean=false;
 
-  constructor(private productService:ProductService){}
+  constructor(private productService:ProductService, private router:Router){}
 
   ngOnInit(): void {
    this.fetchProducts();
@@ -29,5 +30,11 @@ export class ProductDashComponent implements OnInit {
        this.productsLoaded=true;
       }
     })
+  }
+
+  getProduct(productId:number){
+   this.productService.productId=productId;
+   console.log(this.productService.productId);
+   this.router.navigateByUrl('/product');
   }
 }
