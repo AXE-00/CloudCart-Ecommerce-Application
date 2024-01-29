@@ -13,6 +13,7 @@ public class Product {
     private int productId;
     private String category;
     private String productName;
+    private int quantity;
     private double productPrice;
     private String imageUrl;
     private double productRating;
