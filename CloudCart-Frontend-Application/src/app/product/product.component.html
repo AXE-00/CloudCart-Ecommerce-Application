@@ -1,0 +1,86 @@
+<div class="product">
+    <div class="proCont">
+        <div class="cardCont">
+            <div class="cardImg">
+              <img [src]="productData.imageUrl" alt="">
+            </div>
+            <div class="cardContent">
+                <h1 id="proTitle">{{productData.productName}}</h1>
+                <div class="details">
+
+                    <p>Price: <span id="proPri">₹{{productData.productPrice}}</span></p>
+                    <p style="font-weight:600;font-family:Verdana, Geneva, Tahoma, sans-serif;">Inclusive of all taxes
+                        <i class="fa fa-info" id="infoId">
+                            <span id="priDet">
+                                PRICE DETAILS
+                                <hr>
+                                <table style="line-height: 30px;">
+                                    <tr>
+                                        <td>Maximum Retail Price (MRP)</td>
+                                        <td class="tPrice">{{productData.productPrice + 299}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Final Discounted Price</td>
+                                        <td class="tPrice">{{productData.productPrice}}</td>
+                                    </tr>
+                                </table>
+                                <hr style="width: 90%;margin: auto;color: black;margin: 10px;">
+                                <p>
+                                    MRP is inclusive of all taxes This product has an MRP (Maximum Retail Price) 
+                                    set by the supplier. As per govt. guidelines, we recommend that you do not sell
+                                    the product at higher price than MRP.
+                                </p>
+                            </span>
+                        </i>
+                    </p>
+                    
+                    <p>Ratings :
+                        <i class="fa fa-star" *ngFor="let star of getStarsArray()" style="color: rgb(255, 0, 98);"></i> 
+                         ( {{productData.productRating}} )
+                    </p>
+                    
+                </div>
+
+                <div class="sctSize">
+                    <h2 style="font-family:Verdana, Geneva, Tahoma, sans-serif;">Select Size</h2>
+                    <div class="size">
+                        <a href="">S</a>
+                        <a href="">M</a>
+                        <a href="">L</a>
+                        <a href="">XL</a>
+                        <a href="">XXL</a>
+                    </div>
+                </div>
+                
+    
+                <div class="btn">
+                    <a href="" class="addCart">Add To Cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="desc">
+            <p id="proDesc">{{productData.description}}</p>
+        </div>
+    </div>
+</div>
+<div class="diversion">
+    <hr style="width: 90%;margin: auto; padding: 30px;">
+</div>
+<h2 style="text-align: center;">Suggestions</h2>
+<div class="suggestions">
+    <div class="proSug">
+        <div class="proCrd" *ngFor="let proSug of proSuggested">
+            <img src="{{proSug.imageUrl}}" alt="" id="imgPara">
+            <p id="proName">{{proSug.productName}}</p>
+            <p id="proPrice">₹{{proSug.productPrice}}
+                <span>
+                    <i class="fa fa-star">         
+                    </i>
+                    {{proSug.productRating}}
+                </span>
+            </p>
+            <p id="proShip" *ngIf="proSug.productPrice>599">Free Shiping</p>
+            <!-- <p>{{proSug.description}}</p> -->
+        </div>
+    </div>
+</div>
