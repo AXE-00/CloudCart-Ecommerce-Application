@@ -54,6 +54,7 @@ li{
     height: 40px;
     border: 1px solid rgb(175, 175, 175);
     border-radius: 4px;
+    text-align: center;
 }
 button{
     color: white;
