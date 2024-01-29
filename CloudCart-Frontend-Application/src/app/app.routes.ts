@@ -9,6 +9,7 @@ import { SupplierDashboardComponent } from './supplier-dashboard/supplier-dashbo
 import { SupplierVerificationComponent } from './supplier-verification/supplier-verification.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { SupplierWaitingComponent } from './supplier-waiting/supplier-waiting.component';
+import { ProductComponent } from './product/product.component';
 
 
 export const routes: Routes = [
@@ -58,5 +59,10 @@ export const routes: Routes = [
         path:"supplierWait",
         component:SupplierWaitingComponent,
         title:"Approval"
+    },
+    {
+        path:"product",
+        component:ProductComponent,
+        title:"Product | Info"
     }
 ];
