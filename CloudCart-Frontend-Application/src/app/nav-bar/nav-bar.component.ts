@@ -38,7 +38,7 @@ constructor(private logService:LoginService,private userSer:UserService,private 
           next:(data:any)=>{
             console.log(data);
             this.supplierRole = data.suppRole;
-            localStorage.setItem('supRole',this.supplierRole);
+            localStorage.setItem('supRole',this.supplierRole)
             if(this.supplierRole=='supplier'){
         
               this.supplierValid=true;
