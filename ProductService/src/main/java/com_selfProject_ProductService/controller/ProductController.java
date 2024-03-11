@@ -6,6 +6,7 @@ import com_selfProject_ProductService.exception.ProductNotFoundException;
 import com_selfProject_ProductService.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,11 @@ public class ProductController {
     @GetMapping("/getAllProducts")
     public ResponseEntity<?> getAllProducts() throws ProductNotFoundException {
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getProduct")
+    public ResponseEntity<Page<Product>> getProducts(@RequestParam int pageNum , @RequestParam int pageSize){
+        return new ResponseEntity<>(productService.getProducts(pageNum,pageSize),HttpStatus.OK);
     }
 
     @GetMapping("/getByName/{productName}")

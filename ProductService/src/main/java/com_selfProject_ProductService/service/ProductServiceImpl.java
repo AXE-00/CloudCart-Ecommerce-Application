@@ -5,6 +5,9 @@ import com_selfProject_ProductService.exception.ProductAlreadyExistsException;
 import com_selfProject_ProductService.exception.ProductNotFoundException;
 import com_selfProject_ProductService.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -84,6 +87,12 @@ public class ProductServiceImpl implements ProductService {
             existingProduct.setDescription(product.getDescription());
         }
         return productRepository.save(existingProduct);
+    }
+
+    @Override
+    public Page<Product> getProducts(int pageNum, int pageSize) {
+        Page<Product> proPage = productRepository.findAll(PageRequest.of(pageNum,pageSize));
+        return proPage;
     }
 
     @Override
