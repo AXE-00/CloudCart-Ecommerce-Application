@@ -35,7 +35,7 @@ public class ProductController {
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
 
-    @GetMapping("/getProduct")
+    @GetMapping("/getProducts")
     public ResponseEntity<Page<Product>> getProducts(@RequestParam int pageNum , @RequestParam int pageSize){
         return new ResponseEntity<>(productService.getProducts(pageNum,pageSize),HttpStatus.OK);
     }

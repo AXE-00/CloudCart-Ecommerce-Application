@@ -6,6 +6,7 @@ import com_selfProject_UserAuth.model.User;
 import com_selfProject_UserAuth.model.UserDto;
 import com_selfProject_UserAuth.service.IAuthService;
 import com_selfProject_UserAuth.service.ITokenGenerator;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,26 +18,22 @@ public class AuthController {
 
     private IAuthService authService;
     private ITokenGenerator tokenGenerator;
+    private ModelMapper modelMapper;
 
     @Autowired
-    public AuthController(IAuthService authService, ITokenGenerator tokenGenerator) {
+    public AuthController(IAuthService authService, ITokenGenerator tokenGenerator,ModelMapper modelMapper) {
         this.authService = authService;
         this.tokenGenerator = tokenGenerator;
+        this.modelMapper = modelMapper;
     }
 
     @PostMapping("/addUser")
     public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) throws UserAlreadyPresentException {
-        User user = new User(userDto.getUserEmail(),
-                   userDto.getUserName(),
-                   userDto.getPassword(),
-                   userDto.getRole(),
-                   userDto.getPhoneNo(),
-                   userDto.getImageName());
+        User user = modelMapper.map(userDto, User.class);
         return new ResponseEntity<>(authService.addUser(user), HttpStatus.OK);
     }
     @PostMapping("/user/login")
     public ResponseEntity<?> loginUser(@RequestBody User user) throws UserNotFound {
-        System.out.println(user);
         User retrievedUser = authService.login(user);
         System.out.println(retrievedUser);
         if(retrievedUser!=null){
@@ -50,12 +47,7 @@ public class AuthController {
     @PutMapping("/user/Update/{email}")
     public ResponseEntity<?> updateUser(@RequestBody UserDto userDto,@PathVariable String email) throws UserNotFound {
         System.out.println(userDto);
-        User user = new User(userDto.getUserEmail(),
-                             userDto.getUserName(),
-                             userDto.getPassword(),
-                             userDto.getRole(),
-                             userDto.getPhoneNo(),
-                             userDto.getImageName());
+        User user = modelMapper.map(userDto, User.class);
         System.out.println(user);
         return new ResponseEntity<>(authService.updateUser(email,user),HttpStatus.OK);
     }
