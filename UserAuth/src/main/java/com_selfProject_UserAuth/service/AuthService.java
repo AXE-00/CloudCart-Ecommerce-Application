@@ -14,7 +14,7 @@ public class AuthService implements IAuthService{
 
     @Override
     public User addUser(User user) throws UserAlreadyPresentException {
-        if(authRepo.findById(user.getUserEmail()).isPresent()){
+        if(authRepo.findByUserEmail(user.getUserEmail())!=null){
             System.out.println("User Already Present");
             throw new UserAlreadyPresentException();
         }
@@ -23,7 +23,7 @@ public class AuthService implements IAuthService{
 
     @Override
     public User login(User user) throws UserNotFound {
-        if(authRepo.findById(user.getUserEmail()).isEmpty()){
+        if(authRepo.findByUserEmail(user.getUserEmail())==null){
             System.out.println("User Not present");
             throw new UserNotFound();
         }
@@ -33,7 +33,7 @@ public class AuthService implements IAuthService{
 
     @Override
     public User updateUser(String email, User user) throws UserNotFound {
-        if(authRepo.findById(email).isPresent()){
+        if(authRepo.findByUserEmail(user.getUserEmail())!=null){
             User existingUser = authRepo.findById(email).get();
             // System.out.println(existingUser);
             if(user.getUserName()!=null){
@@ -55,7 +55,7 @@ public class AuthService implements IAuthService{
     @Override
     public void removeUser(String email) throws UserNotFound {
         User user  = authRepo.findById(email).get();
-       if(authRepo.findById(email).isEmpty()){
+        if(authRepo.findByUserEmail(user.getUserEmail())==null){
          throw new UserNotFound();
        }
         authRepo.delete(user);

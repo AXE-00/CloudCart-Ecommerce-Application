@@ -1,24 +1,25 @@
 
+
 <div class="productBoard">
-    <div class="cards" *ngIf="productsLoaded">
-        <div class="proCard" *ngFor="let product of productsData">
-          <div class="cardDetails" (click)="getProduct(product.productId)">
-            <div class="imgCont">
-               <img src="{{product.imageUrl}}" alt="">
-               <div class="like"><i class="fa fa-like" style="color: red;"></i></div>
-            </div>
-            <h2>{{product.productName}}</h2>
-            <h3>₹{{product.productPrice}} <span>onward</span></h3>
-            <p *ngIf="product.productPrice>499" id="delivery">Free Delivery</p>
-            <div class="ratings">
-              <p id="rat">{{product.productRating}}<i class="fa fa-star"></i></p><span>2400 Reviews</span>
-            </div>
+  <div class="cards" *ngIf="productsLoaded">
+      <div class="proCard" *ngFor="let product of productsData.data.content">
+        <div class="cardDetails" (click)="getProduct(product.productId)">
+          <div class="imgCont">
+             <img src="{{product.imageUrl}}" alt="">
+             <div class="like"><i class="fa fa-like" style="color: red;"></i></div>
           </div>
-         </div>
+          <h2>{{product.productName}}</h2>
+          <h4>INR {{product.productPrice}} <span>onward</span></h4>
+          <!-- <p *ngIf="product.productPrice>499" id="delivery">Free Delivery</p>-->
+          <div class="ratings">
+            <p id="rat">{{product.productRating}}<i class="fa fa-star"></i></p><span>2400 Reviews</span>
+          </div>
+        </div>
+       </div>
+  </div>
+  <div class="cards" *ngIf="!productsLoaded">
+    <div class="loader">
+       <img src="../../assets/Pinwheel.gif" alt="" id="imgLoader">
     </div>
-    <div class="cards" *ngIf="!productsLoaded">
-      <div class="loader">
-         <img src="../../assets/Pinwheel.gif" alt="" id="imgLoader">
-      </div>
-   </div>
+ </div>
 </div>

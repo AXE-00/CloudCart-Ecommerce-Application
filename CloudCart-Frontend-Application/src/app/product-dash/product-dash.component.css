@@ -1,8 +1,11 @@
 img{
-    width: 210px;
-    height: 210px;
+    width: 278px;
+    height: 360px;
     background-color: pink;
-    border-radius: 5px;
+    /* border-radius: 5px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .productBoard{
@@ -28,11 +31,11 @@ img{
 }
 
 .proCard{
-    width: 230px;
+    width: 300px;
     padding:10px;
-    height: 380px;
+    height: 530px;
     border-radius: 5px;
-    border: 1px solid rgb(215, 213, 213);
+    /* border: 1px solid rgb(215, 213, 213); */
     cursor: pointer;
     transition:0.2s ease-out;
 }
@@ -78,12 +81,12 @@ span{
 }
 #rat{
     color: rgb(255, 255, 255);
-    background-color: rgb(3, 193, 107);
-    padding:3px 5px;
-    border-radius:10%;
+    background-color: rgb(6, 143, 81);
+    padding:3px 4px;
+    border-radius:7%;
     width:50px;
     text-align: center;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 #rat i{

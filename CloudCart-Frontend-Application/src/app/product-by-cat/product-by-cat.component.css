@@ -1,0 +1,99 @@
+img{
+    width: 228px;
+    height: 260px;
+    background-color: pink;
+    /* border-radius: 5px; */
+}
+
+.productBoard{
+    width: 90%;
+    margin: 200px auto;
+}
+
+.cards{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    
+}
+
+.like{
+    position: absolute;
+}
+
+#imgLoader{
+    width: 80px;
+    height: 80px;
+}
+
+.proCard{
+    width: 250px;
+    padding:10px;
+    height: 430px;
+    border-radius: 5px;
+    /* border: 1px solid rgb(215, 213, 213); */
+    cursor: pointer;
+    transition:0.2s ease-out;
+}
+
+.proCard:hover{
+   transform: scale(1.025);
+   transition:0.2s ease-in;
+}
+
+h2{
+    color: rgb(98, 93, 93);
+    text-align: center;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+h3{
+    font-size: 22px;
+    font-weight: 500;
+    color: rgb(66, 63, 63);
+    margin-top: -10px;
+}
+
+span{
+    font-size: 13px;
+    color: rgb(98, 93, 93);
+}
+
+#delivery{
+    padding:5px 20px;
+    /* background-color: rgb(143, 252, 194); */
+    background-color: rgb(130, 163, 251);
+    font-size: 11px;
+    text-align: center;
+    /* color: rgb(0, 138, 50); */
+    color: white;
+    font-weight: 500;
+    margin-top: -10px;
+}
+.ratings{
+    border-radius: 8px;
+    display: flex;
+}
+#rat{
+    color: rgb(255, 255, 255);
+    background-color: rgb(6, 143, 81);
+    padding:3px 4px;
+    border-radius:7%;
+    width:50px;
+    text-align: center;
+    font-size: 12px;
+}
+
+#rat i{
+    margin-left: 4px;
+    font-size: 14px;
+}
+
+.ratings span{
+    margin-left: 10%;
+    margin-top: 4px;
+    font-size: 13px;
+    color: rgb(157, 155, 155);
+}

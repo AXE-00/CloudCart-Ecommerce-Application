@@ -14,28 +14,50 @@
 }
 
 /* logo */
-.logo{
-    font-size: 35px;
-    text-align: center;
-    font-weight: 500;
-    /* margin-left: 4%; */
-    margin-top: 20px;
+
+.logoBox {
+    width: 100%; /* Full width for responsiveness */
+    max-width: 230px; /* Maintain max-width for layout */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Align items evenly */
+    padding: 10px;
 }
-.logo a{
-    color: rgb(64, 16, 98);
+
+/* Logo image styling */
+.imgLogo img {
+    width: 50px;
+    height: auto;
+    display: block;
+}
+
+.logoText{
+    padding-top: 10px;
+}
+
+/* Flexbox for equal width */
+.imgLogo, .logoText {
+    width: 50%;
+    display: flex;
+    justify-content: center; /* Centers content inside div */
+}
+
+/* Styling for the text */
+.logoText .logo a {
+    color: rgb(42, 58, 86);
     font-family: gear;
-    margin-left: 10px;
-    animation: 1s logoCol alternate infinite;
+    font-size: 35px;
+    text-decoration: none;
+    animation: logoCol 1s alternate infinite;
 }
+
+/* Define the animation */
 @keyframes logoCol {
     100%{
-        color: #ff0051;
+        color: #075478;
     }
 }
-.logo a:hover{
-    color:#ff0051;
-    transition: 0.2s ease-in-out ;
-}
+
 a{
     text-decoration: none;
     list-style: none;
@@ -88,7 +110,7 @@ a{
     position: absolute;
     top: 30px;
     border: 1px solid black;
-    padding: 20px;
+    padding: 15px;
     background-color: white;
     display: none;
 
@@ -98,10 +120,11 @@ a{
     display: block;
 }
 
-.proList #log {
+.proList #log,#fav {
     background-color: rgb(255, 0, 93);
-    margin-top: 30px;
+    margin-top: 20px;
     border-radius: 4px;
+
 }
 
 .proList #log:hover{
@@ -109,7 +132,7 @@ a{
     transition: 0.3s ease-in-out;
 }
 
-#log a{
+#log a,#fav a{
     color: white;
     border: none;
     font-weight: 500;
@@ -142,6 +165,7 @@ a{
     border-bottom: 3px solid rgb(242, 32, 95);
     padding-bottom: 21px;
 }
+
 
 .menu-icon{
   display: none;

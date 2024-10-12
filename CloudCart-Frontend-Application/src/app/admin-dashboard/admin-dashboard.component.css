@@ -89,3 +89,16 @@ li a{
 .links a:hover{
     color: yellow;
 }
+
+.addItem{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn{
+    padding: 8px 35px;
+    background-color: rgb(255, 0, 89);
+    font-size: 18px;color: white;
+    border-radius: 8px;
+}

@@ -20,6 +20,8 @@ loginTime:any="Login";
 supplierValid:boolean=false;
 supplierVer:boolean=true;
 role=true;
+loggedIn:boolean=false;
+fav:string='';
 
 constructor(private logService:LoginService,private userSer:UserService,private supService:SupplierService, private router :Router){}
   ngOnInit(): void {
@@ -52,6 +54,11 @@ constructor(private logService:LoginService,private userSer:UserService,private 
         this.role=false;
         this.supplierVer=false;
       }
+
+    if(this.logService.isLoggedIn){
+      this.loggedIn=true;
+      this.fav="Favourite";
+    }
     })
     
   }
@@ -63,6 +70,7 @@ constructor(private logService:LoginService,private userSer:UserService,private 
     if(this.loginTime === 'LogOut'){
       this.role=true;
       this.supplierVer=true;
+      this.loggedIn=false;
       this.logService.loginfailure();
       localStorage.clear();
       this.router.navigateByUrl("/login")
