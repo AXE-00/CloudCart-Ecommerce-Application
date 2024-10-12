@@ -25,6 +25,7 @@
         <module>ProductService</module>
         <module>PaymentService</module>
         <module>MessageService</module>
+        <module>Cart_Service</module>
     </modules>
 
     <properties>

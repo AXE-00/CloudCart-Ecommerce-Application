@@ -1,7 +1,6 @@
-package com.cart.Cart_Service.Component;
+package com_selfProject_ProductService.component;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Component;

@@ -1,8 +1,11 @@
 package com_selfProject_ProductService.controller;
 
+import com_selfProject_ProductService.component.Translator;
 import com_selfProject_ProductService.domain.Product;
 import com_selfProject_ProductService.exception.ProductAlreadyExistsException;
 import com_selfProject_ProductService.exception.ProductNotFoundException;
+import com_selfProject_ProductService.model.cover.ProductResponse;
+import com_selfProject_ProductService.model.cover.ResponseHelper;
 import com_selfProject_ProductService.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping("/api/v1/productService")
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "/api/v1/productService")
 public class ProductController {
 
     @Autowired
@@ -30,14 +35,24 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/getAllProducts")
-    public ResponseEntity<?> getAllProducts() throws ProductNotFoundException {
-        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
+    @GetMapping(value = "/getAllProducts")
+    @SuppressWarnings(value = "unchecked")
+    public ProductResponse<List<Product>> getAllProducts() throws ProductNotFoundException {
+        List<Product> productResponse = productService.getAllProducts();
+        return ResponseHelper.createResponse(new ProductResponse<List<Product>>(), productResponse,
+                Translator.toLocale("get.all.product.success",null),
+                Translator.toLocale("get.all.product.failed",null));
     }
 
     @GetMapping("/getProducts")
-    public ResponseEntity<Page<Product>> getProducts(@RequestParam int pageNum , @RequestParam int pageSize){
-        return new ResponseEntity<>(productService.getProducts(pageNum,pageSize),HttpStatus.OK);
+    @SuppressWarnings(value = "unchecked")
+    public ProductResponse<Page<Product>> getProducts(@RequestParam int pageNum , @RequestParam int pageSize){
+
+        Page<Product> productResponse = productService.getProducts(pageNum,pageSize);
+        return ResponseHelper.createResponse(new ProductResponse<Page<Product>>(), productResponse,
+                Translator.toLocale("paginated.product.fetched",null),
+                Translator.toLocale("failed.to.fetch",null));
+
     }
 
     @GetMapping("/getByName/{productName}")
@@ -46,8 +61,12 @@ public class ProductController {
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<?> getById(@PathVariable int id) {
-        return new ResponseEntity<>(productService.getById(id), HttpStatus.OK);
+    @SuppressWarnings("unchecked")
+    public ProductResponse<Product> getById(@PathVariable int id) {
+        Product response = productService.getById(id);
+        return ResponseHelper.createResponse(new ProductResponse<Product>(),response,
+                Translator.toLocale("product.fetched.success",null),
+                Translator.toLocale("product.fetched.failed",null));
     }
 
     @GetMapping("/getByCategory/{category}")
