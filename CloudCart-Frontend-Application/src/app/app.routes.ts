@@ -10,6 +10,8 @@ import { SupplierVerificationComponent } from './supplier-verification/supplier-
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { SupplierWaitingComponent } from './supplier-waiting/supplier-waiting.component';
 import { ProductComponent } from './product/product.component';
+import { FavouriteComponent } from './favourite/favourite.component';
+import { ProductByCatComponent } from './product-by-cat/product-by-cat.component';
 
 
 export const routes: Routes = [
@@ -64,5 +66,15 @@ export const routes: Routes = [
         path:"product",
         component:ProductComponent,
         title:"Product | Info"
+    },
+    {
+        path:"fav",
+        component:FavouriteComponent,
+        title:"Favourite | Dash"
+    },
+    {
+        path:"proCat/:category",
+        component:ProductByCatComponent,
+        title:"Product | Category"
     }
 ];

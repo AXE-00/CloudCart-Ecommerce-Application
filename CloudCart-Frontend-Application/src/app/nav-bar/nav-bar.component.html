@@ -1,6 +1,14 @@
 <div class="nav">
-    <p class="logo"><img src="assets/images/logo/favicon-32x32.png" style="margin-bottom: 10px" alt="logo-image">
-         <a routerLink="">CloudCart</a>  </p>
+    <div class="logoBox">
+        <div class="imgLogo">
+           <img src="../../assets/images/logo_main.png" style="margin-bottom: 10px" alt="logo-image">
+        </div>
+        <div class="logoText">
+            <p class="logo">
+                <a routerLink="">RUDRA</a>  
+            </p>
+        </div>
+    </div>
     <div class="searchBox">
         <input type="text" class="search" placeholder="Search Product">
         <img src="../../assets/images/search.png" alt="">
@@ -17,6 +25,7 @@
            <ul class="proList">
                <li>Hello {{userName}}</li>
                <li id="log"><a (click)="clicked()">{{loginTime}}</a></li>
+               <li id="fav" *ngIf="loggedIn"><a routerLink="/fav">{{fav}}</a></li>
            </ul>
         </li>
         <li><a href="#">Cart</a></li>
@@ -26,12 +35,12 @@
         <div class="menu-icon" (click)="toggleMenu()">
         <i class="fa fa-angle-down"></i></div>
         <ul class="typeList" id="expandableMenu">
-            <li><a href="">Women</a></li>
-            <li><a href="">Men</a></li>
-            <li><a href="">Kids</a></li>
-            <li><a href="">Home & Kitchen</a></li>
-            <li><a href="">Footwear</a></li>
-            <li><a href="">Electronics</a></li>
+            <li><a routerLink="/proCat/women">Women</a></li>
+            <li><a routerLink="/proCat/mens">Men</a></li>
+            <li><a routerLink="/proCat/kids">Kids</a></li>
+            <li><a routerLink="/proCat/homeDecor">Home & Kitchen</a></li>
+            <li><a routerLink="/proCat/footwear">Footwear</a></li>
+            <li><a routerLink="/proCat/electronic">Electronics</a></li>
         </ul>
     </div>
 </div>

@@ -10,6 +10,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from "./add-product/add-product.component";
 import { SupplierDashboardComponent } from "./supplier-dashboard/supplier-dashboard.component";
+import { AdminDashboardComponent } from "./admin-dashboard/admin-dashboard.component";
+import { ProductComponent } from "./product/product.component";
+
 
 
 
@@ -29,7 +32,9 @@ import { SupplierDashboardComponent } from "./supplier-dashboard/supplier-dashbo
         HttpClientModule, FormsModule,
         ReactiveFormsModule,
         AddProductComponent,
-        SupplierDashboardComponent
+        SupplierDashboardComponent,
+        AdminDashboardComponent,
+        ProductComponent
     ]
 })
 export class AppComponent {

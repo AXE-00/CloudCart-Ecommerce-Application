@@ -1,16 +1,13 @@
 img{
-    width: 278px;
-    height: 360px;
+    width: 228px;
+    height: 260px;
     background-color: pink;
     /* border-radius: 5px; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .productBoard{
     width: 90%;
-    margin: auto;
+    margin: 200px auto;
 }
 
 .cards{
@@ -31,9 +28,9 @@ img{
 }
 
 .proCard{
-    width: 300px;
+    width: 250px;
     padding:10px;
-    height: 530px;
+    height: 430px;
     border-radius: 5px;
     /* border: 1px solid rgb(215, 213, 213); */
     cursor: pointer;

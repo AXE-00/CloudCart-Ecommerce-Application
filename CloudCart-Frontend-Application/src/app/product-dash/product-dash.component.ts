@@ -23,7 +23,7 @@ export class ProductDashComponent implements OnInit {
   }
 
   fetchProducts(){
-    this.productService.getAllProduct().subscribe({
+    this.productService.getProduct().subscribe({
       next:data=>{
        this.productsData = data;
        console.log(this.productsData);

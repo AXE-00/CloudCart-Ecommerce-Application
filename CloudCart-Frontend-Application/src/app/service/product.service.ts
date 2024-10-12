@@ -29,6 +29,10 @@ export class ProductService {
     return this.httpClient.get(`${this.productUrl}/getAllProducts`)
 
   }
+
+  getProduct(){
+    return this.httpClient.get(`${this.productUrl}/getProducts?pageNum=0&pageSize=5`)
+  }
     
   getProductById(productId:number){
 
